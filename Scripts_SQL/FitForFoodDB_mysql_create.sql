@@ -55,7 +55,7 @@ CREATE TABLE `Pago` (
 	`ID_Usuario` INT NOT NULL,
 	`Monto` FLOAT NOT NULL,
 	`Fecha` DATE NOT NULL,
-	`Medio_Pago` varchar NOT NULL,
+	`Medio_Pago` varchar(20) NOT NULL,
 	`Estado` BOOLEAN NOT NULL,
 	PRIMARY KEY (`ID_Pago`)
 );
