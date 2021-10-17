@@ -13,7 +13,7 @@ CREATE TABLE `Calorias` (
 	`ID_Registro` INT NOT NULL AUTO_INCREMENT,
 	`ID_Usuario` INT NOT NULL UNIQUE,
 	`Cal_Diarias` FLOAT,
-	`Objetivo` varchar(10) NOT NULL,
+	`Objetivo` varchar(20) NOT NULL,
 	`Registro_Calorias` TEXT,
 	`Fecha_PrimerRegistro` DATE,
 	`Prom_Calorias_Consumidas` FLOAT,
@@ -65,7 +65,7 @@ CREATE TABLE `Alimento` (
 	`Nombre` varchar(50) NOT NULL UNIQUE,
 	`Tipo` varchar(30) NOT NULL,
 	`Calorias` FLOAT(8) NOT NULL,
-	`Objetivo_Cal_Relacionado` varchar(10) NOT NULL,
+	`Objetivo_Cal_Relacionado` varchar(40) NOT NULL,
 	`Grado_Recomendacion` INT(1) NOT NULL,
 	PRIMARY KEY (`ID`)
 );
