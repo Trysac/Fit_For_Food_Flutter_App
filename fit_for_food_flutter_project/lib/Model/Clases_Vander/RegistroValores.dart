@@ -1,3 +1,4 @@
+// CLASE DE COLOR AZUL SEGÚN  EL DIAGRAMA FÍSICO
 class RegistroValores {
   // ATRIBUTOS
   bool _registroCompletado = false;
@@ -33,7 +34,7 @@ class RegistroValores {
 }
 
 //ENUM
-enum tipo { textoPrueba }
+enum EnumTipo { textoPrueba }
 // MÉTODO
 _registroValores() {}
 _registrarValores(List datos) {}

@@ -1,3 +1,4 @@
+// CLASE DE COLOR AZUL SEGÚN  EL DIAGRAMA FÍSICO
 class Registro {
   // ATRIBUTOS
   double _valor = 0;
@@ -15,6 +16,6 @@ class Registro {
 }
 
 // ENUM
-enum tipoRegistro { textoPrueba }
+enum EnumTipoRegistro { textoPrueba }
 // MÉTODO
 _registro() {}

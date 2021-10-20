@@ -1,3 +1,4 @@
+// CLASE DE COLOR AZUL SEGÚN  EL DIAGRAMA FÍSICO
 class ProductoAlimento {
   // ATRIBUTOS
   String _nombre = "";
@@ -28,7 +29,7 @@ class ProductoAlimento {
 }
 
 // ENUM
-enum tipo { textoPrueba }
-enum objetivoCaloricoRelacionado { textoPrueba }
+enum EnumTipo { textoPrueba }
+enum EnumObjetivoCaloricoRelacionado { textoPrueba }
 // MÉTODO
 _productoAlimento() {}
