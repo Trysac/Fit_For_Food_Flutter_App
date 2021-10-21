@@ -1,3 +1,4 @@
+import 'package:fit_for_food_flutter_project/View/Menu/Vistas/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -13,24 +14,24 @@ class LoginPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   //margin: EdgeInsets.only(top: 5),
                   height: 210.0,
                   width: 210.0,
                   child: Image.asset('assets/images/logo.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.email),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -60,7 +61,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
@@ -71,9 +72,15 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: MaterialButton(
-                    onPressed: () => print("Ingresaste satisfactoriamente"),
+                    onPressed: () {
+                      print("Ingresaste satisfactoriamente");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
                     color: Colors.green,
-                    child: Text(
+                    child: const Text(
                       'Iniciar sesión',
                       style: TextStyle(
                         fontSize: 20,
@@ -82,10 +89,10 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Divider(
+                const Divider(
                   color: Colors.black,
                   height: 30,
                 ),
@@ -103,7 +110,7 @@ class LoginPage extends StatelessWidget {
                       onPressed: () {
                         print('Registrar');
                       },
-                      child: Text('Registrarse'),
+                      child: const Text('Registrarse'),
                     )
                   ],
                 ),
