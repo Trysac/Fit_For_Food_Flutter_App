@@ -1,15 +1,18 @@
+import 'package:fit_for_food_flutter_project/View/Contrase%C3%B1as/restore_page.dart';
 import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/register_page.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Vistas/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
+
+    
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(30),
+        padding:  EdgeInsets.all(30),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -36,18 +39,30 @@ class LoginPage extends StatelessWidget {
                 TextFormField(
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Contraseña',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.lock),
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    suffixIcon: InkWell(
+                      //onTap: ,
+                      child: Icon(
+                        Icons.visibility,
+                      ),
+                    ),
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RestorePage(),
+                          )
+                        );
+                      },
                       child: Text(
                         '¿Olvidaste tu contraseña?',
                         style: TextStyle(
@@ -73,7 +88,7 @@ class LoginPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomePage()),
+                            builder: (context) => HomePage()),
                       );
                     },
                     color: Colors.green,
@@ -122,4 +137,5 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+  
 }

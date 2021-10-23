@@ -1,4 +1,3 @@
-import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/login_page.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -12,6 +11,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Registro'),
+      ),
         body: Padding(
             padding: const EdgeInsets.all(30.0),
             child: SingleChildScrollView(
@@ -19,21 +21,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      IconButton(
-                          iconSize: 40.0,
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginPage()));
-                          },
-                          icon: const Icon(Icons.arrow_back_rounded))
-                    ],
-                  ),
                   SizedBox(
-                      width: 120.0,
+                      width: 140.0,
+                      height: 140.0,
                       child: Image.asset('assets/images/logo.png')),
                   const Padding(padding: EdgeInsets.symmetric(vertical: 25.0)),
                   Row(children: <Widget>[

@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.green,
-            title: const Text('Fit For Food'),
-            actions: const <Widget>[
+            title:  Text('Fit For Food'),
+            actions:  <Widget>[
               Padding(
                 padding: EdgeInsets.only(right: 8.0),
                 child: Image(
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
+                          builder: (context) => LoginPage()),
                     );
                   },
                   child: const ListTile(
