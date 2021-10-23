@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _actualPage = 0;
   final List<Widget> _pages = [
-    // Insertar todas las vistas a mostrar
     const HomeMenu(),
     const ReportsMenu(),
     const Menu3(),
