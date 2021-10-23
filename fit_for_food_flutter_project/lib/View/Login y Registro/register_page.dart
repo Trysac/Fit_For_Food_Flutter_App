@@ -1,3 +1,4 @@
+import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/account_validation_page.dart';
 import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -38,11 +39,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   const Padding(padding: EdgeInsets.symmetric(vertical: 25.0)),
                   Row(children: <Widget>[
                     Container(
-                        padding: const EdgeInsets.only(bottom: 10.0),
+                        padding: const EdgeInsets.only(bottom: 6.0),
                         decoration: const BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(
-                                    color: Colors.green, width: 3.0))),
+                                    color: Colors.green, width: 4.0))),
                         child: const Text('Crea una cuenta',
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold)))
@@ -82,61 +83,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(100.0),
                       ),
                       child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AccountValidationPage()));
+                          },
                           color: Colors.green,
                           child: const Text('Registrarse',
                               style: TextStyle(
                                   fontSize: 20, color: Colors.white))))
                 ]))));
-    //     padding: const EdgeInsets.all(30),
-    //     child: Center(
-    //       child: SingleChildScrollView(
-    //         child: Column(
-    //           children: [
-    //             Container(
-    //               clipBehavior: Clip.antiAliasWithSaveLayer,
-    //               width: double.infinity,
-    //               height: 60,
-    //               decoration: BoxDecoration(
-    //                 borderRadius: BorderRadius.circular(100),
-    //               ),
-    //               child: MaterialButton(
-    //                 onPressed: () {},
-    //                 color: Colors.green,
-    //                 child: const Text(
-    //                   'Iniciar sesión',
-    //                   style: TextStyle(
-    //                     fontSize: 20,
-    //                     color: Colors.white,
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //             const Divider(
-    //               color: Colors.black,
-    //               height: 30,
-    //             ),
-    //             Row(
-    //               mainAxisAlignment: MainAxisAlignment.center,
-    //               children: [
-    //                 Text(
-    //                   '¿Aún no tienes una cuenta? ',
-    //                   style: TextStyle(
-    //                     color: Colors.black.withOpacity(0.5),
-    //                     fontSize: 16.0,
-    //                   ),
-    //                 ),
-    //                 TextButton(
-    //                   onPressed: () {},
-    //                   child: const Text('Registrarse'),
-    //                 )
-    //               ],
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }
