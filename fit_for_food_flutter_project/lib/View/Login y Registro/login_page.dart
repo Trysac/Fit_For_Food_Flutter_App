@@ -1,3 +1,4 @@
+import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/register_page.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Vistas/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Center(
@@ -15,7 +15,6 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  //margin: EdgeInsets.only(top: 5),
                   height: 210.0,
                   width: 210.0,
                   child: Image.asset('assets/images/logo.png'),
@@ -48,9 +47,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
-                        print('¡Olvidé mi contraseña!');
-                      },
+                      onPressed: () {},
                       child: Text(
                         '¿Olvidaste tu contraseña?',
                         style: TextStyle(
@@ -73,10 +70,10 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: MaterialButton(
                     onPressed: () {
-                      print("Ingresaste satisfactoriamente");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
                       );
                     },
                     color: Colors.green,
@@ -108,7 +105,11 @@ class LoginPage extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        print('Registrar');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterPage(),
+                            ));
                       },
                       child: const Text('Registrarse'),
                     )

@@ -96,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                     leading: Icon(Icons.settings),
                     title: Text('Configuración')),
                 MaterialButton(
+                  padding: const EdgeInsets.only(right: 10.0),
                   onPressed: () {
                     Navigator.push(
                       context,
