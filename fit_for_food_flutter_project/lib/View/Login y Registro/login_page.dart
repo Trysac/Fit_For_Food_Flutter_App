@@ -1,4 +1,5 @@
-import 'package:fit_for_food_flutter_project/View/Contrase%C3%B1as/restore_page.dart';
+
+import 'package:fit_for_food_flutter_project/View/Contrase%C3%B1a/restore_page.dart';
 import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/register_page.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Vistas/home_page.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class LoginPage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              children: [
+              children: <Widget>[
                 SizedBox(
                   height: 210.0,
                   width: 210.0,

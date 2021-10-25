@@ -1,4 +1,5 @@
-import 'package:fit_for_food_flutter_project/View/Contrase%C3%B1as/recover_page.dart';
+
+import 'package:fit_for_food_flutter_project/View/Contrase%C3%B1a/recover_page.dart';
 import 'package:flutter/material.dart';
 
 class RestorePage extends StatefulWidget {
@@ -27,12 +28,12 @@ class _RestorePageState extends State<RestorePage> {
                   width: 130.0,
                   child: Image.asset('assets/images/cerrar.png'),
                 ),
-                const SizedBox(height: 20.0),
+                SizedBox(height: 20.0),
                 Text('¿Olvidaste tu contraseña?',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),),
-                const SizedBox(height: 20.0),
+                SizedBox(height: 20.0),
                 Divider(height: 10.0, color: Colors.black54),
-                const SizedBox(height: 20.0),
+                SizedBox(height: 20.0),
                 SizedBox(
                   width: 270.0,
                   child: Text('Te enviaremos un código que podrás usar para iniciar sesión',
