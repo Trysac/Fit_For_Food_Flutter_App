@@ -1,5 +1,6 @@
-import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/login_page.dart';
 import 'package:flutter/material.dart';
+
+import 'View/Login/login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,8 +9,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false, 
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       supportedLocales: [
         Locale('en', ''), // English, no country code
         Locale('es', ''), // Spanish, no country code

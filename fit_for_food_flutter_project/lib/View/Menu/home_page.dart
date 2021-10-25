@@ -1,7 +1,8 @@
-import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/login_page.dart';
-import 'package:fit_for_food_flutter_project/View/Menu/Vistas/home_menu.dart';
-import 'package:fit_for_food_flutter_project/View/Menu/Vistas/reports_menu.dart';
 import 'package:flutter/material.dart';
+
+import '../Login/login_page.dart';
+import 'Home/home_menu.dart';
+import 'Reports/reports_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,8 +28,8 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.green,
-            title:  Text('Fit For Food'),
-            actions:  <Widget>[
+            title: Text('Fit For Food'),
+            actions: <Widget>[
               Padding(
                 padding: EdgeInsets.only(right: 8.0),
                 child: Image(
@@ -99,8 +100,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => LoginPage()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   child: const ListTile(

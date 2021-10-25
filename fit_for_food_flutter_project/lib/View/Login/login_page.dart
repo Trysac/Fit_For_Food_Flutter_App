@@ -1,19 +1,17 @@
-
-import 'package:fit_for_food_flutter_project/View/Contrase%C3%B1a/restore_page.dart';
-import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/register_page.dart';
-import 'package:fit_for_food_flutter_project/View/Menu/Vistas/home_page.dart';
 import 'package:flutter/material.dart';
+
+import '../Menu/home_page.dart';
+import 'Password/restore_page.dart';
+import 'Register/register_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
-
-    
     return Scaffold(
       body: Padding(
-        padding:  EdgeInsets.all(30),
+        padding: EdgeInsets.all(30),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -58,11 +56,10 @@ class LoginPage extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RestorePage(),
-                          )
-                        );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RestorePage(),
+                            ));
                       },
                       child: Text(
                         '¿Olvidaste tu contraseña?',
@@ -88,8 +85,7 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => HomePage()),
+                        MaterialPageRoute(builder: (context) => HomePage()),
                       );
                     },
                     color: Colors.green,
@@ -138,5 +134,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-  
 }

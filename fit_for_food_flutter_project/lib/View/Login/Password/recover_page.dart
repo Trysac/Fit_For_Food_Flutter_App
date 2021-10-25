@@ -1,5 +1,6 @@
-import 'package:fit_for_food_flutter_project/View/Login%20y%20Registro/login_page.dart';
 import 'package:flutter/material.dart';
+
+import '../login_page.dart';
 
 class RecoverPage extends StatefulWidget {
   RecoverPage({Key? key}) : super(key: key);
@@ -16,20 +17,22 @@ class _RecoverPageState extends State<RecoverPage> {
         title: Text('Nueva contraseña'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(30),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+          padding: const EdgeInsets.all(30),
+          child: Center(
+              child: SingleChildScrollView(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
                 SizedBox(
                   height: 130.0,
                   width: 130.0,
                   child: Image.asset('assets/images/llave.png'),
                 ),
                 const SizedBox(height: 20.0),
-                Text('Recuperar contraseña',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),),
+                Text(
+                  'Recuperar contraseña',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+                ),
                 const SizedBox(height: 20.0),
                 Divider(height: 10.0, color: Colors.black54),
                 const SizedBox(height: 20.0),
@@ -66,8 +69,7 @@ class _RecoverPageState extends State<RecoverPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) =>  LoginPage()),
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
                     color: Colors.green,
@@ -80,11 +82,7 @@ class _RecoverPageState extends State<RecoverPage> {
                     ),
                   ),
                 ),
-              ]
-            )
-          )
-        )
-      ),
+              ])))),
     );
   }
 }

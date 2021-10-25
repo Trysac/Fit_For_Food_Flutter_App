@@ -1,5 +1,6 @@
-import 'package:fit_for_food_flutter_project/View/Menu/Vistas/formulario.dart';
 import 'package:flutter/material.dart';
+
+import '../form_page.dart';
 
 class AccountValidationPage extends StatefulWidget {
   const AccountValidationPage({Key? key}) : super(key: key);
@@ -12,20 +13,20 @@ class _AccountValidationPageState extends State<AccountValidationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Validación de cuenta'),
-      ),
+        appBar: AppBar(
+          title: Text('Validación de cuenta'),
+        ),
         body: Padding(
             padding: const EdgeInsets.all(30.0),
             child: SingleChildScrollView(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Image.asset('assets/images/validacion.png'),
-                      ),
+                  SizedBox(
+                    height: 100.0,
+                    width: 100.0,
+                    child: Image.asset('assets/images/validacion.png'),
+                  ),
                   //const Padding(padding: EdgeInsets.only(top: 5.0)),
                   // const Text('Validación de cuenta',
                   //     style: TextStyle(
@@ -73,9 +74,9 @@ class _AccountValidationPageState extends State<AccountValidationPage> {
                       child: MaterialButton(
                           onPressed: () {
                             Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                            builder: (context) => FormularioPage()));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FormPage()));
                           },
                           color: Colors.green,
                           child: const Text('Enviar',
