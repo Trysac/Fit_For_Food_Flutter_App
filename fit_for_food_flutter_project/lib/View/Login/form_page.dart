@@ -10,17 +10,17 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
-  DateTime? _dateTime;
+  // DateTime? _dateTime;
   String? genreSelectedValue;
   String? activityLevelSelectedValue;
 
-  String getDate() {
-    if (_dateTime == null) {
-      return '';
-    } else {
-      return '${_dateTime!.day}/${_dateTime!.month}/${_dateTime!.year}';
-    }
-  }
+  // String getDate() {
+  //   if (_dateTime == null) {
+  //     return '';
+  //   } else {
+  //     return '${_dateTime!.day}/${_dateTime!.month}/${_dateTime!.year}';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,8 @@ class _FormPageState extends State<FormPage> {
           title: const Text('Formulario'),
         ),
         body: Padding(
-            padding: const EdgeInsets.all(30.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
             child: SingleChildScrollView(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -47,26 +48,34 @@ class _FormPageState extends State<FormPage> {
                                 fontSize: 20.0, fontWeight: FontWeight.bold)))
                   ]),
                   const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+
+                  // datepicker Button
+                  // TextFormField(
+                  //   controller: TextEditingController(text: getDate()),
+                  //   keyboardType: TextInputType.,
+                  //   decoration: const InputDecoration(
+                  //       labelText: 'Fecha de nacimiento',
+                  //       border: OutlineInputBorder(),
+                  //       prefixIcon: Icon(Icons.date_range)),
+                  //   onTap: () {
+                  //     showDatePicker(
+                  //             context: context,
+                  //             initialDate: _dateTime ?? DateTime.now(),
+                  //             firstDate: DateTime(DateTime.now().year - 100),
+                  //             lastDate: DateTime(DateTime.now().year + 100))
+                  //         .then((date) {
+                  //       setState(() {
+                  //         _dateTime = date;
+                  //       });
+                  //     });
+                  //   },
+                  // ),
                   TextFormField(
-                    controller: TextEditingController(text: getDate()),
-                    keyboardType: TextInputType.none,
-                    decoration: const InputDecoration(
-                        labelText: 'Fecha de nacimiento',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.date_range)),
-                    onTap: () {
-                      showDatePicker(
-                              context: context,
-                              initialDate: _dateTime ?? DateTime.now(),
-                              firstDate: DateTime(DateTime.now().year - 100),
-                              lastDate: DateTime(DateTime.now().year + 100))
-                          .then((date) {
-                        setState(() {
-                          _dateTime = date;
-                        });
-                      });
-                    },
-                  ),
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                          labelText: 'Edad',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.person_rounded))),
                   const SizedBox(height: 20),
                   TextFormField(
                       keyboardType: TextInputType.number,

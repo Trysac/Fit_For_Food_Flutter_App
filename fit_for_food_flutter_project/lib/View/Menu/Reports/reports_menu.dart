@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'sf_charts.dart';
+
 class ReportsMenu extends StatefulWidget {
   const ReportsMenu({Key? key}) : super(key: key);
 
@@ -8,296 +10,246 @@ class ReportsMenu extends StatefulWidget {
 }
 
 class _ReportsMenuState extends State<ReportsMenu> {
+  bool myColor = false;
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        const SizedBox(
-          child: Padding(
-            padding: EdgeInsets.only(top: 30.0, bottom: 20.0),
-            child: Center(
-              child: Text(
-                'Hidratación',
-                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          const Padding(padding: EdgeInsets.symmetric(vertical: 15.0)),
+          Container(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(color: Colors.green, width: 4.0))),
+              child: const Text('Hidratación',
+                  style:
+                      TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold))),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 15.0)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                children: const <Widget>[
+                  Text('Litros actuales'),
+                  Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+                  Text(
+                    '1.2 L',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Text('Litros actuales'),
-                Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-                Text(
-                  '1.2 L',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Icon(
+              const Padding(padding: EdgeInsets.symmetric(horizontal: 10.0)),
+              const Icon(
                 Icons.keyboard_arrow_right_rounded,
                 color: Colors.green,
-                size: 40.0,
+                size: 50.0,
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Text('Litros objetivo'),
-                Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-                Text(
-                  '2.5 L',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ],
-            )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 36.0),
-          child: Row(
+              const Padding(padding: EdgeInsets.symmetric(horizontal: 10.0)),
+              Column(
+                children: const <Widget>[
+                  Text('Litros objetivo'),
+                  Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+                  Text(
+                    '2.5 L',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              )
+            ],
+          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 15.0)),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextButton(
-                onPressed: () {},
                 child: const Text('1 semana'),
                 style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
+                  side: const BorderSide(color: Colors.green),
+                  primary: myColor ? Colors.blue : Colors.green,
+                ),
+                onPressed: () {
+                  setState(() {
+                    myColor = !myColor;
+                  });
+                },
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: SizedBox(
+                  height: 30.0,
+                  child: VerticalDivider(
+                    thickness: 1.5,
+                    color: Colors.black45,
+                  ),
                 ),
               ),
-              const Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
               TextButton(
-                onPressed: () {},
                 child: const Text('1 mes'),
                 style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
+                  side: const BorderSide(color: Colors.green),
+                  primary: myColor ? Colors.blue : Colors.green,
+                ),
+                onPressed: () {
+                  setState(() {
+                    myColor = !myColor;
+                  });
+                },
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: SizedBox(
+                  height: 30.0,
+                  child: VerticalDivider(
+                    thickness: 1.5,
+                    color: Colors.black45,
+                  ),
                 ),
               ),
-              const Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
               TextButton(
-                onPressed: () {},
                 child: const Text('3 meses'),
                 style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
+                  side: const BorderSide(color: Colors.green),
+                  primary: myColor ? Colors.blue : Colors.green,
                 ),
+                onPressed: () {
+                  setState(() {
+                    myColor = !myColor;
+                  });
+                },
               ),
             ],
           ),
-        ),
-        const Padding(
-            padding: EdgeInsets.only(top: 00.0),
-            child: Image(image: AssetImage('assets/images/04.JPG'))),
-        const SizedBox(
-          child: Padding(
-            padding: EdgeInsets.only(top: 30.0, bottom: 20.0),
-            child: Center(
-              child: Text(
-                'Calorías',
-                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
-              ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+          const Card(
+            elevation: 5.0,
+            margin: EdgeInsets.symmetric(horizontal: 25.0),
+            child: SFHydratationLineChart(),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+            child: Divider(
+              thickness: 0.5,
+              color: Colors.black87,
             ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Text('Calorías actuales'),
-                Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-                Text(
-                  '1035 cal',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Icon(
+          Container(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(color: Colors.green, width: 4.0))),
+              child: const Text('Calorías',
+                  style:
+                      TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold))),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 15.0)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                children: const <Widget>[
+                  Text('Calorías actuales'),
+                  Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+                  Text(
+                    '1035 cal',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              const Padding(padding: EdgeInsets.symmetric(horizontal: 10.0)),
+              const Icon(
                 Icons.keyboard_arrow_right_rounded,
                 color: Colors.green,
-                size: 40.0,
+                size: 50.0,
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Text('Calorías objetivo'),
-                Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-                Text(
-                  '2000 ~ cal',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ],
-            )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 36.0),
-          child: Row(
+              const Padding(padding: EdgeInsets.symmetric(horizontal: 10.0)),
+              Column(
+                children: const <Widget>[
+                  Text('Calorías objetivo'),
+                  Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+                  Text(
+                    '2000 ~ cal',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 15.0)),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextButton(
-                onPressed: () {},
                 child: const Text('1 semana'),
                 style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
+                  side: const BorderSide(color: Colors.green),
+                  primary: myColor ? Colors.blue : Colors.green,
+                ),
+                onPressed: () {
+                  setState(() {
+                    myColor = !myColor;
+                  });
+                },
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: SizedBox(
+                  height: 30.0,
+                  child: VerticalDivider(
+                    thickness: 1.5,
+                    color: Colors.black45,
+                  ),
                 ),
               ),
-              const Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
               TextButton(
-                onPressed: () {},
                 child: const Text('1 mes'),
                 style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
+                  side: const BorderSide(color: Colors.green),
+                  primary: myColor ? Colors.blue : Colors.green,
+                ),
+                onPressed: () {
+                  setState(() {
+                    myColor = !myColor;
+                  });
+                },
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: SizedBox(
+                  height: 30.0,
+                  child: VerticalDivider(
+                    thickness: 1.5,
+                    color: Colors.black45,
+                  ),
                 ),
               ),
-              const Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
               TextButton(
-                onPressed: () {},
                 child: const Text('3 meses'),
                 style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
+                  side: const BorderSide(color: Colors.green),
+                  primary: myColor ? Colors.blue : Colors.green,
                 ),
+                onPressed: () {
+                  setState(() {
+                    myColor = !myColor;
+                  });
+                },
               ),
             ],
           ),
-        ),
-        const Padding(
-            padding: EdgeInsets.only(top: 00.0),
-            child: Image(image: AssetImage('assets/images/05.JPG'))),
-        const SizedBox(
-          child: Padding(
-            padding: EdgeInsets.only(top: 30.0, bottom: 20.0),
-            child: Center(
-              child: Text(
-                'Peso',
-                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
-              ),
-            ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+          const Card(
+            elevation: 5.0,
+            margin: EdgeInsets.symmetric(horizontal: 25.0),
+            child: SFLineChartCalories(),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Text('Peso actuales'),
-                Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-                Text(
-                  '68 kg',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Icon(
-                Icons.keyboard_arrow_right_rounded,
-                color: Colors.green,
-                size: 40.0,
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
-                Text('Peso objetivo'),
-                Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-                Text(
-                  '60 kg',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ],
-            )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 36.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextButton(
-                onPressed: () {},
-                child: const Text('1 semana'),
-                style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
-                ),
-              ),
-              const Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
-              TextButton(
-                onPressed: () {},
-                child: const Text('1 mes'),
-                style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
-                ),
-              ),
-              const Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
-              TextButton(
-                onPressed: () {},
-                child: const Text('3 meses'),
-                style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: Colors.green,
-                  onSurface: Colors.grey,
-                  elevation: 4.0,
-                  shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.5))),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const Padding(
-            padding: EdgeInsets.only(top: 00.0),
-            child: Image(image: AssetImage('assets/images/06.JPG'))),
-      ],
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+        ],
+      ),
     );
   }
 }
