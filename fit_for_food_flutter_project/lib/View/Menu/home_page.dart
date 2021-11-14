@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Login/login_page.dart';
+import 'Foods/comida.dart';
 import 'Home/home_menu.dart';
 import 'Reports/reports_menu.dart';
 
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const HomeMenu(),
     const ReportsMenu(),
-    const Menu3(),
+    ComidasPage(),
     const Menu4()
   ];
 
@@ -137,8 +138,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Menu3 extends StatelessWidget {
-  const Menu3({Key? key}) : super(key: key);
+/*class   ComidasPage extends StatelessWidget {
+  const ComidasPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +147,7 @@ class Menu3 extends StatelessWidget {
       child: Text('Comidas'),
     );
   }
-}
+}*/
 
 class Menu4 extends StatelessWidget {
   const Menu4({Key? key}) : super(key: key);
