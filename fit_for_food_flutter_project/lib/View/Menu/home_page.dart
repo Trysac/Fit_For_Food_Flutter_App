@@ -1,3 +1,4 @@
+import 'package:fit_for_food_flutter_project/View/Menu/Weight/weight_menu.dart';
 import 'package:flutter/material.dart';
 
 import '../Login/login_page.dart';
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     const HomeMenu(),
     const ReportsMenu(),
     ComidasPage(),
-    const Menu4()
+    const WeightMenu()
   ];
 
   @override
@@ -134,28 +135,6 @@ class _HomePageState extends State<HomePage> {
               });
             },
           )),
-    );
-  }
-}
-
-/*class   ComidasPage extends StatelessWidget {
-  const ComidasPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Comidas'),
-    );
-  }
-}*/
-
-class Menu4 extends StatelessWidget {
-  const Menu4({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Peso'),
     );
   }
 }

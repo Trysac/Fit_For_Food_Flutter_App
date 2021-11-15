@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'sf_charts.dart';
+import '../sf_charts.dart';
 
 class ReportsMenu extends StatefulWidget {
   const ReportsMenu({Key? key}) : super(key: key);
@@ -245,7 +245,7 @@ class _ReportsMenuState extends State<ReportsMenu> {
           const Card(
             elevation: 5.0,
             margin: EdgeInsets.symmetric(horizontal: 25.0),
-            child: SFLineChartCalories(),
+            child: SFCaloriesLineChart(),
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
         ],
