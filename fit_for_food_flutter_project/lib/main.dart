@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         Locale('en', ''), // English, no country code
         Locale('es', ''), // Spanish, no country code
       ],
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
