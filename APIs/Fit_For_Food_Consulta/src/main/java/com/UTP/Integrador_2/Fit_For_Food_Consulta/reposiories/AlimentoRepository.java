@@ -9,9 +9,6 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 public interface AlimentoRepository extends CrudRepository<AlimentoModel, Integer> {
-    @Override
-    @Query("select a from alimento a")
-    List<AlimentoModel> findAll();
 
     @Query("select a from alimento a where a.tipo = :tipo")
     List<AlimentoModel> findAllByType(@Param("tipo") String tipo);

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -32,7 +33,11 @@ public class AlimentoService {
     }
 
     public List<AlimentoBean> getListaAlimentosTodos() {
-        List<AlimentoModel> listaAlimentosModel = this.alimentoRepository.findAll();
+        Iterable<AlimentoModel> response = this.alimentoRepository.findAll();
+        List<AlimentoModel> listaAlimentosModel = new ArrayList<>();
+        for (AlimentoModel model : response) {
+            listaAlimentosModel.add(model);
+        }
         List<AlimentoBean> listaAlimentosBean = new ArrayList<>();
         for (AlimentoModel alimentoDB : listaAlimentosModel) {
             listaAlimentosBean.add(toBean(alimentoDB));
