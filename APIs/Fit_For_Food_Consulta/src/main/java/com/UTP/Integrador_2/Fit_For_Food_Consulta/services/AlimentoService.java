@@ -26,27 +26,35 @@ public class AlimentoService {
         if (model == null) {
             model = new AlimentoModel();
         }
-        BeanUtils.copyProperties(bean, model);;
+        BeanUtils.copyProperties(bean, model);
+        ;
         return model;
     }
 
-    public List<AlimentoBean> getListaAlimentosTodos(){
-        List<AlimentoModel> listaAlimentosModel = this.alimentoRepository.findAllAlimentos();
+    public List<AlimentoBean> getListaAlimentosTodos() {
+        List<AlimentoModel> listaAlimentosModel = this.alimentoRepository.findAll();
         List<AlimentoBean> listaAlimentosBean = new ArrayList<>();
-        for(AlimentoModel alimentoDB : listaAlimentosModel){
+        for (AlimentoModel alimentoDB : listaAlimentosModel) {
             listaAlimentosBean.add(toBean(alimentoDB));
         }
         return listaAlimentosBean;
     }
 
+    public List<AlimentoBean> getListaAlimentosByType(String tipo) {
+        List<AlimentoModel> listaAlimentosModel = this.alimentoRepository.findAllByType(tipo);
+        List<AlimentoBean> listaAlimentosBean = new ArrayList<>();
+        for (AlimentoModel alimentoDB : listaAlimentosModel) {
+            listaAlimentosBean.add(toBean(alimentoDB));
+        }
+        return listaAlimentosBean;
+    }
 
-
-//    public List<AlimentoBean> getListaAlimentosPorTipo(){
-//
-//    }
-//
-//    public List<AlimentoBean> getListaAlimentosPorObjetivo(){
-//
-//    }
-
+    public List<AlimentoBean> getListaAlimentosPorObjectivo(String objetivo) {
+        List<AlimentoModel> listaAlimentosModel = this.alimentoRepository.findAllByObjetive(objetivo);
+        List<AlimentoBean> listaAlimentosBean = new ArrayList<>();
+        for (AlimentoModel alimentoDB : listaAlimentosModel) {
+            listaAlimentosBean.add(toBean(alimentoDB));
+        }
+        return listaAlimentosBean;
+    }
 }

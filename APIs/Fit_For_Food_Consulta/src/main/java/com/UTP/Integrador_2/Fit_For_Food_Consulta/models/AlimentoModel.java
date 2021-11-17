@@ -2,11 +2,15 @@ package com.UTP.Integrador_2.Fit_For_Food_Consulta.models;
 
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.models.constantes.GradoRecomendacion;
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.models.constantes.TipoAlimento;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "alimento")
+@Getter
+@Setter
 public class AlimentoModel {
 
     @Id
