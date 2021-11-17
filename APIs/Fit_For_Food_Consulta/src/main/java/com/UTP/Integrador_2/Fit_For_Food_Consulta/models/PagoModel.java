@@ -1,87 +1,51 @@
 package com.UTP.Integrador_2.Fit_For_Food_Consulta.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "pago")
+@Getter
+@Setter
 public class PagoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(name = "ID_Pago", unique = true, nullable = false)
     private int id;
 
-    @Column(nullable = false)
+    @Column(name = "ID_Usuario", nullable = false)
     private int idUsuario;
 
-    @Column(nullable = false)
+    @Column(name = "Monto", nullable = false)
     private float monto;
 
-    @Column(nullable = false)
+    @Column(name = "Fecha", nullable = false)
     private Date fechaPago;
 
-    @Column(nullable = false)
+    @Column(name = "Medio_Pago", nullable = false)
     private String medioPago;
 
     //TRUE=pago exitoso
-    @Column(nullable = false)
+    @Column(name = "Estado", nullable = false)
     private byte estadoPago;
 
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public float getMonto() {
-        return monto;
-    }
-
-    public void setMonto(float monto) {
-        this.monto = monto;
-    }
-
-    public Date getFechaPago() {
-        return fechaPago;
-    }
-
-    public void setFechaPago(Date fechaPago) {
-        this.fechaPago = fechaPago;
-    }
-
-    public String getMedioPago() {
-        return medioPago;
-    }
-
-    public void setMedioPago(String medioPago) {
-        this.medioPago = medioPago;
-    }
-
     public boolean getEstadoPago() {
-        if (estadoPago == 0){
+        if (estadoPago == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     public void setEstadoPago(boolean estado) {
-        if (estado){
+        if (estado) {
             this.estadoPago = 0;
-        }else{
+        } else {
             this.estadoPago = 1;
         }
     }

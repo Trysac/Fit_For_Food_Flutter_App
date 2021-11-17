@@ -15,64 +15,27 @@ public class AlimentoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(name = "ID", unique = true, nullable = false)
     private int id;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "Nombre", unique = true, nullable = false)
     private String nombre;
 
-    @Column(nullable = false)
+    @Column(name = "Tipo", nullable = false)
     private String tipo;
 
-    @Column(nullable = false)
+    @Column(name = "Calorias", nullable = false)
     private float calorias;
 
-    @Column(nullable = false)
+    @Column(name = "Objetivo_Cal_Relacionado", nullable = false)
     private String objetivoRelacionado;
 
-    @Column(nullable = false)
+    @Column(name = "Grado_Recomendacion", nullable = false)
     private byte gradoRecomendacion;
 
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public float getCalorias() {
-        return calorias;
-    }
-
-    public void setCalorias(float calorias) {
-        this.calorias = calorias;
-    }
-
-    public String getObjetivoRelacionado() {
-        return objetivoRelacionado;
-    }
-
-    public void setObjetivoRelacionado(String objetivoRelacionado) {
-        this.objetivoRelacionado = objetivoRelacionado;
-    }
-
-    public byte getGradoRecomendacion() {
-        return gradoRecomendacion;
-    }
-
     public void setGradoRecomendacion(GradoRecomendacion gradoRecomendacion) {
-        switch (gradoRecomendacion){
+        switch (gradoRecomendacion) {
             case noRecomendado:
                 this.gradoRecomendacion = 0;
                 break;
@@ -90,12 +53,8 @@ public class AlimentoModel {
         }
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
     public void setTipo(TipoAlimento tipo) {
-        switch (tipo){
+        switch (tipo) {
             case fruta:
                 this.tipo = "fruta";
                 break;
