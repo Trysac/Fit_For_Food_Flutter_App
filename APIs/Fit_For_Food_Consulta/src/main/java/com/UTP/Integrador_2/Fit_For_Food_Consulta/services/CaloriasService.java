@@ -40,6 +40,22 @@ public class CaloriasService {
         }
     }
 
+    public CaloriasBean create(CaloriasBean bean, int userID){
+        CaloriasModel model = new CaloriasModel();
+        if(existByID(userID)){ return null; }
+        model = toModel(model,bean);
+        this.caloriasRepository.save(model);
+        return toBean(model);
+    }
+
+    public CaloriasBean Update(CaloriasBean bean, int userID){
+        if(!existByID(userID)){ return null; }
+        CaloriasModel model = new CaloriasModel();
+        model = toModel(model,bean);
+        this.caloriasRepository.save(model);
+        return toBean(model);
+    }
+
     private boolean existByID(int userID){
         Optional<CaloriasModel> ejercicioModel = this.caloriasRepository.findUserById(userID);
         if (ejercicioModel.isPresent()){
