@@ -1,3 +1,5 @@
+// ignore: file_names
+// ignore: file_names
 // CLASE DE COLOR AZUL SEGÚN  EL DIAGRAMA FÍSICO
 class Registro {
   // ATRIBUTOS
