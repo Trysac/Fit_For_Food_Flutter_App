@@ -4,39 +4,44 @@
 
 import 'dart:convert';
 
-class Alimentos {
-  Alimentos(
+class ConsumoAlimentos {
+  ConsumoAlimentos(
       {required this.calorias,
-      required this.imagen,
-      required this.medida,
+      required this.day,
+      required this.month,
       required this.nombre,
       required this.tipo,
+      required this.year,
       this.id});
 
   int calorias;
-  String imagen;
-  String medida;
+  int day;
+  int month;
   String nombre;
   String tipo;
+  int year;
   String? id;
-
-  factory Alimentos.fromJson(String str) => Alimentos.fromMap(json.decode(str));
+  factory ConsumoAlimentos.fromJson(String str) =>
+      ConsumoAlimentos.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Alimentos.fromMap(Map<String, dynamic> json) => Alimentos(
+  factory ConsumoAlimentos.fromMap(Map<String, dynamic> json) =>
+      ConsumoAlimentos(
         calorias: json["calorias"],
-        imagen: json["imagen"],
-        medida: json["medida"],
+        day: json["day"],
+        month: json["month"],
         nombre: json["nombre"],
         tipo: json["tipo"],
+        year: json["year"],
       );
 
   Map<String, dynamic> toMap() => {
         "calorias": calorias,
-        "imagen": imagen,
-        "medida": medida,
+        "day": day,
+        "month": month,
         "nombre": nombre,
         "tipo": tipo,
+        "year": year,
       };
 }
