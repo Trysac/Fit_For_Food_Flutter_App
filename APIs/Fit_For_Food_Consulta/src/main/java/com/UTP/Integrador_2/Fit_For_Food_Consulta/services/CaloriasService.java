@@ -57,8 +57,8 @@ public class CaloriasService {
     }
 
     private boolean existByID(int userID){
-        Optional<CaloriasModel> ejercicioModel = this.caloriasRepository.findUserById(userID);
-        if (ejercicioModel.isPresent()){
+        Optional<CaloriasModel> model = this.caloriasRepository.findUserById(userID);
+        if (model.isPresent()){
             return true;
         }
         else{
