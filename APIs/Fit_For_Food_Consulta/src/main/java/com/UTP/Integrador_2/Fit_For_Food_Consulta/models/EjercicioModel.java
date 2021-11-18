@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name = "ejercicio")
 @Table(name = "ejercicio")
 @Getter
 @Setter

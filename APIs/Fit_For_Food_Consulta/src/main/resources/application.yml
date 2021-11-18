@@ -1,0 +1,25 @@
+#datasource:
+#  database-type: mysql
+#  schemaName: pruebaslocales_fff
+#  url: jdbc:mysql://localhost:3306/pruebaslocales_fff
+#  driverClassName: 'com.mysql.cj.jdbc.Driver'
+#  username: root
+#  password:
+#  minimum-idle: 10
+#  maximum-pool-size: 50
+#  validationQuery: SELECT 1
+#  testWhileIdle: true
+#  hikari.registerMbeans: true
+
+#spring:
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    username: root
+#    password:
+#    hikari:
+#      idle-timeout: 1000
+#      maximum-pool-size: 10
+#      minimum-idle: 2
+#      pool-name: pruebaslocales_fff
+#      jdbc-url: jdbc:mysql://localhost:3306/pruebaslocales_fff
+#      driver-class-name: com.mysql.cj.jdbc.Driver

@@ -10,7 +10,7 @@ public class UsuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private int id;
 
     @Column(unique = true, nullable = false)
     private String correo;
@@ -40,11 +40,11 @@ public class UsuarioModel {
         this.correo = correo;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

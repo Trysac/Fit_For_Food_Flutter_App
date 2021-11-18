@@ -4,10 +4,11 @@ import com.UTP.Integrador_2.Fit_For_Food_Consulta.models.AlimentoModel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
+@Repository
 public interface AlimentoRepository extends CrudRepository<AlimentoModel, Integer> {
 
     @Query("select a from alimento a where a.tipo = :tipo")

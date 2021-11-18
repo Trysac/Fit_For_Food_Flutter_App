@@ -1,13 +1,13 @@
 package com.UTP.Integrador_2.Fit_For_Food_Consulta.services;
 
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.beans.UsuarioBean;
-import com.UTP.Integrador_2.Fit_For_Food_Consulta.beans.UsuarioPremiumBean;
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.models.UsuarioModel;
-import com.UTP.Integrador_2.Fit_For_Food_Consulta.models.UsuarioPremiumModel;
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.reposiories.UsuarioRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -29,7 +29,15 @@ public class UsuarioService {
         return model;
     }
 
-    /*public UsuarioModel obtenerUsuarios(int idUsuario){
-        return (UsuarioModel) usuarioRepository.findById(idUsuario);
-    }*/
+    public UsuarioBean getByUserID(int userID) {
+        Optional<UsuarioModel> model = this.usuarioRepository.findUserById(userID);
+        if (model.isPresent()){
+            UsuarioBean bean = toBean(model.get());
+            return bean;
+        }
+        else{
+            return null;
+        }
+    }
+
 }

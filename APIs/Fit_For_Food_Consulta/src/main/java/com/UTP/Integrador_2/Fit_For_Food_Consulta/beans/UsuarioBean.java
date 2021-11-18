@@ -14,4 +14,5 @@ public class UsuarioBean {
     private Date fechaUltimoInicioSesion;
     private String codigoSesion;
     private String fechaUltimoCambioContraseña;
+    private double CaloriasDiarias;
 }
