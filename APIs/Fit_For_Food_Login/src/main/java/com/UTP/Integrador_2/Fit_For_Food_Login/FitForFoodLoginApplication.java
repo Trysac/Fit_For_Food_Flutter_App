@@ -9,5 +9,4 @@ public class FitForFoodLoginApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FitForFoodLoginApplication.class, args);
 	}
-
 }

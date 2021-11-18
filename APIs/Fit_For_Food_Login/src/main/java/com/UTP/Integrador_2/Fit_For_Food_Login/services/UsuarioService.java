@@ -54,11 +54,11 @@ public class UsuarioService {
                 return token;
             }
             else{
-                return "La Contraseña Ingresada Es Incorrecta";
+                return "La Contraseña Ingresada Es Incorrecta : " + pass;
             }
         }
         else{
-            return "No se encontro registro para el correo ingresado";
+            return "No se encontro registro para el correo ingresado : " + email;
         }
     }
 

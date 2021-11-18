@@ -15,5 +15,5 @@ public interface UsuarioRepository extends CrudRepository<UsuarioModel, Integer>
     Optional<UsuarioModel> findUserById(@Param("id") int id);
 
     @Query("select u from usuario u where correo = :email")
-    Optional<UsuarioModel> findUserByMail(@Param("id") String email);
+    Optional<UsuarioModel> findUserByMail(@Param("email") String email);
 }
