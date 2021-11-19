@@ -66,8 +66,9 @@ class _HomeMenuState extends State<HomeMenu> {
               children: <Widget>[
                 Image.network(
                   'https://cdn-icons-png.flaticon.com/512/123/123431.png',
-                  scale: 10.0,
+                  scale: 12.0,
                 ),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
                 const Text(
                   'Manzana',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -91,16 +92,19 @@ class _HomeMenuState extends State<HomeMenu> {
                 )
               ],
             ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const Icon(
-                  Icons.food_bank_rounded,
-                  size: 50.0,
+                Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/2044/2044936.png',
+                  scale: 12.0,
                 ),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
                 const Text(
-                  'Leche',
+                  'Plátano',
                   style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.end,
                 ),
                 Expanded(
                   child: RichText(
@@ -113,7 +117,7 @@ class _HomeMenuState extends State<HomeMenu> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: '123 cal ',
+                              text: '89 calorías ',
                             ),
                           ]),
                       textAlign: TextAlign.end),
@@ -138,13 +142,15 @@ class _HomeMenuState extends State<HomeMenu> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const Icon(
-                  Icons.food_bank_rounded,
-                  size: 50.0,
+                Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/590/590689.png',
+                  scale: 12.0,
                 ),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
                 const Text(
-                  'Pollo',
+                  'Piña',
                   style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.end,
                 ),
                 Expanded(
                   child: RichText(
@@ -153,27 +159,30 @@ class _HomeMenuState extends State<HomeMenu> {
                               TextStyle(color: Colors.black87, fontSize: 14.0),
                           children: [
                             TextSpan(
-                              text: '146 g\n',
+                              text: '100 g\n',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: '180 cal',
+                              text: '50 calorías',
                             ),
                           ]),
                       textAlign: TextAlign.end),
                 )
               ],
             ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const Icon(
-                  Icons.food_bank_rounded,
-                  size: 50.0,
+                Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/590/590690.png',
+                  scale: 12.0,
                 ),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
                 const Text(
-                  'Quinua',
+                  'Kiwi',
                   style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.end,
                 ),
                 Expanded(
                   child: RichText(
@@ -182,11 +191,11 @@ class _HomeMenuState extends State<HomeMenu> {
                               TextStyle(color: Colors.black87, fontSize: 14.0),
                           children: [
                             TextSpan(
-                              text: '200 g\n',
+                              text: '100 g\n',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: '174 cal',
+                              text: '61 calorías',
                             ),
                           ]),
                       textAlign: TextAlign.end),
@@ -211,13 +220,15 @@ class _HomeMenuState extends State<HomeMenu> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const Icon(
-                  Icons.food_bank_rounded,
-                  size: 50.0,
+                Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/1514/1514922.png',
+                  scale: 12.0,
                 ),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
                 const Text(
-                  'Galletas',
+                  'Uvas',
                   style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.end,
                 ),
                 Expanded(
                   child: RichText(
@@ -226,11 +237,11 @@ class _HomeMenuState extends State<HomeMenu> {
                               TextStyle(color: Colors.black87, fontSize: 14.0),
                           children: [
                             TextSpan(
-                              text: '90 g\n',
+                              text: '100 g\n',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: '123 cal',
+                              text: '67 calorías',
                             ),
                           ]),
                       textAlign: TextAlign.end),
@@ -255,13 +266,15 @@ class _HomeMenuState extends State<HomeMenu> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const Icon(
-                  Icons.food_bank_rounded,
-                  size: 50.0,
+                Image.asset(
+                  'assets/images/postres.png',
+                  scale: 12.0,
                 ),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
                 const Text(
-                  'Bebidas',
+                  'Postres',
                   style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.end,
                 ),
                 Expanded(
                   child: RichText(
@@ -274,7 +287,7 @@ class _HomeMenuState extends State<HomeMenu> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: '160 cal',
+                              text: '160 calorías',
                             ),
                           ]),
                       textAlign: TextAlign.end),
