@@ -1,3 +1,4 @@
+import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -63,29 +64,30 @@ class _HomeMenuState extends State<HomeMenu> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const Icon(
-                  Icons.food_bank_rounded,
-                  size: 50.0,
+                Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/123/123431.png',
+                  scale: 10.0,
                 ),
                 const Text(
-                  'Pan',
+                  'Manzana',
                   style: TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.end,
                 ),
                 Expanded(
                   child: RichText(
-                      text: const TextSpan(
-                          style:
-                              TextStyle(color: Colors.black87, fontSize: 14.0),
-                          children: [
-                            TextSpan(
-                              text: '2 Rebanadas\n',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: '156 cal',
-                            ),
-                          ]),
-                      textAlign: TextAlign.end),
+                    text: const TextSpan(
+                        style: TextStyle(color: Colors.black87, fontSize: 14.0),
+                        children: [
+                          TextSpan(
+                            text: '100 g\n',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: '52 calorías',
+                          ),
+                        ]),
+                    textAlign: TextAlign.end,
+                  ),
                 )
               ],
             ),
@@ -107,26 +109,17 @@ class _HomeMenuState extends State<HomeMenu> {
                               TextStyle(color: Colors.black87, fontSize: 14.0),
                           children: [
                             TextSpan(
-                              text: '1 Vaso\n',
+                              text: '100 g\n',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: '80 cal',
+                              text: '123 cal ',
                             ),
                           ]),
                       textAlign: TextAlign.end),
                 )
               ],
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-            ElevatedButton.icon(
-                onPressed: () {},
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green)),
-                icon: const Icon(
-                  Icons.add_circle,
-                ),
-                label: const Text('Agregar elemento')),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
             Row(
               children: [
@@ -200,15 +193,6 @@ class _HomeMenuState extends State<HomeMenu> {
                 )
               ],
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-            ElevatedButton.icon(
-                onPressed: () {},
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green)),
-                icon: const Icon(
-                  Icons.add_circle,
-                ),
-                label: const Text('Agregar elemento')),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
             Row(
               children: [
@@ -253,16 +237,51 @@ class _HomeMenuState extends State<HomeMenu> {
                 )
               ],
             ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+            Row(
+              children: [
+                Container(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom:
+                                BorderSide(color: Colors.green, width: 4.0))),
+                    child: const Text('Otros',
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold))),
+              ],
+            ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-            ElevatedButton.icon(
-                onPressed: () {},
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green)),
-                icon: const Icon(
-                  Icons.add_circle,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const Icon(
+                  Icons.food_bank_rounded,
+                  size: 50.0,
                 ),
-                label: const Text('Agregar elemento')),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+                const Text(
+                  'Bebidas',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Expanded(
+                  child: RichText(
+                      text: const TextSpan(
+                          style:
+                              TextStyle(color: Colors.black87, fontSize: 14.0),
+                          children: [
+                            TextSpan(
+                              text: '70 g\n',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: '160 cal',
+                            ),
+                          ]),
+                      textAlign: TextAlign.end),
+                )
+              ],
+            ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
           ],
         ),
       ),
@@ -290,11 +309,6 @@ Widget _CalendarToday() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      const Icon(
-        Icons.keyboard_arrow_left_rounded,
-        color: Colors.black54,
-        size: 40.0,
-      ),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.0),
       ),
@@ -312,11 +326,6 @@ Widget _CalendarToday() {
       ),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.0),
-      ),
-      const Icon(
-        Icons.keyboard_arrow_right_rounded,
-        color: Colors.black54,
-        size: 40.0,
       ),
     ],
   );

@@ -219,7 +219,6 @@ class _SFWeightLineChartState extends State<SFWeightLineChart> {
       primaryYAxis: CategoryAxis(isVisible: false),
       primaryXAxis: DateTimeAxis(
           dateFormat: DateFormat(DateFormat.NUM_MONTH_DAY),
-          desiredIntervals: 4,
           visibleMinimum: minDateTime,
           visibleMaximum: _maxDateTime),
       zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
