@@ -50,6 +50,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                // BOTÓN RECUPERAR CONTRASEÑA--------------------------------------------------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -74,6 +75,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
+                // BOTÓN INICIAR SESIÓN  -----------------------------------------------------
                 Container(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   width: double.infinity,
@@ -98,6 +100,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 const SizedBox(
                   height: 30,
                 ),
@@ -105,6 +108,7 @@ class LoginPage extends StatelessWidget {
                   color: Colors.black,
                   height: 30,
                 ),
+                // BOTÓN REGISTRARSE  -------------------------------------------------------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

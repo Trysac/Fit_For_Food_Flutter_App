@@ -3,6 +3,14 @@ import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Widget/search_widget.dart';
 import 'package:flutter/material.dart';
 
+/*
+ ------------------------------------------------------------------------------------------
+ CLASE NO USADA 
+ - Este clase es para listar  alimentos con datos locales del proyecto
+ -  OJO: Se está usando en su reemplazo es listado_alimentos_Page.dart
+------------------------------------------------------------------------------------------
+*/
+
 class FilterLocalListPage extends StatefulWidget {
   @override
   FilterLocalListPageState createState() => FilterLocalListPageState();
@@ -16,12 +24,11 @@ class FilterLocalListPageState extends State<FilterLocalListPage> {
   void initState() {
     super.initState();
 
-   foods = allFoods;
+    foods = allFoods;
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        
         body: Column(
           children: <Widget>[
             buildSearch(),
@@ -55,14 +62,13 @@ class FilterLocalListPageState extends State<FilterLocalListPage> {
         title: Text(food.name),
         subtitle: Text(food.calorias),
         trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(food.peso, 
-                  style: TextStyle(
-                    color: Colors.grey
-                  ),
-                )
-              ],
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              food.peso,
+              style: TextStyle(color: Colors.grey),
+            )
+          ],
         ),
       );
 

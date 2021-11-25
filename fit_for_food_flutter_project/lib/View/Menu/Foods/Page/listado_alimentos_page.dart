@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fit_for_food_flutter_project/Modules/ClasesVander/producto_alimento.dart';
 import 'package:fit_for_food_flutter_project/Modules/alimentos_models.dart';
 import 'package:fit_for_food_flutter_project/Modules/consumo_models.dart';
@@ -47,11 +46,12 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
     return this.listAlimentos;
   }
 
-  //-----------------SERVICES - REGISTRAR ALIMENTO----------------------
-  // NOTA: Luego se optimizará para trabajarlo separado
-  // POST: REGISTRAR CONSUMO
-  // https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json
-
+/*
+  INICIO SERVICES_REGISTRAR ALIMENTO --------------------------------------------------------------
+   NOTA: Luego se optimizará el código para trabajarlo separado
+   POST: REGISTRAR CONSUMO
+   https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json
+*/
   static Future registrarConsumo(ConsumoAlimentos consumo) async {
     final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
     String url =
@@ -64,6 +64,7 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
     consumo.id = decodedData['name'];
     return consumo.id!;
   }
+//FIN SERVICES_REGISTRAR ALIMENTO -----------------------------------------------------------
 
   //USADOS PARA EL LISTADO DE ALIMENTOS
   late List<Alimentos> alimentos = [];
@@ -105,11 +106,13 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
     );
   }
 
+  // BUSCADOR_GENERAL-------------------------------------------------------------------------
   Widget buildSearch() => SearchWidget(
         text: query,
         hintText: 'Buscar',
         onChanged: searchFood,
       );
+  // BUSCADOR_COMIDA -------------------------------------------------------------------------
   void searchFood(String query) {
     final alimentos = dataAlimentos.where((alimento) {
       final nombreAlimento = alimento.nombre.toLowerCase();
@@ -127,18 +130,7 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
     });
   }
 
-/*
-  Future searchFood(String query) async => debounce(() async {
-        final books = await FoodsApi.getFoods(query);
-
-        if (!mounted) return;
-
-        setState(() {
-          this.query = query;
-          this.foods = books;
-        });
-      });
-*/
+// LISTADO DE ALIMENTOS.-----------------------------------------------------------------------
   Widget buildFood(Alimentos dataAlimento) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 7, vertical: 7),
@@ -176,6 +168,7 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
   }
 }
 
+//  DIALOG DE REGISTRO DE ALIMENTOS -----------------------------------------------------------
 void _mostrarAlert(BuildContext context, Alimentos alimento) {
   showDialog(
       //Contexto de la página

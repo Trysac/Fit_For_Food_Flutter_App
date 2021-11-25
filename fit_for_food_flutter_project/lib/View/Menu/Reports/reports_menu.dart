@@ -18,6 +18,7 @@ class _ReportsMenuState extends State<ReportsMenu> {
       child: Column(
         children: <Widget>[
           const Padding(padding: EdgeInsets.symmetric(vertical: 15.0)),
+          // REPORTE DE CALORÍAS ---------------------------------------------------------------
           Container(
               padding: const EdgeInsets.only(bottom: 4.0),
               decoration: const BoxDecoration(
@@ -127,8 +128,11 @@ class _ReportsMenuState extends State<ReportsMenu> {
           const Card(
             elevation: 5.0,
             margin: EdgeInsets.symmetric(horizontal: 25.0),
+            // CHART DE CALORÍAS -------------------------------------------------------------
             child: SFCaloriesLineChart(),
           ),
+
+          // LINEA DIVISORA  -----------------------------------------------------------------
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
@@ -138,6 +142,8 @@ class _ReportsMenuState extends State<ReportsMenu> {
             ),
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+
+          // REPORTE DE AGUA -----------------------------------------------------------------
           Container(
               padding: const EdgeInsets.only(bottom: 4.0),
               decoration: const BoxDecoration(
@@ -247,6 +253,7 @@ class _ReportsMenuState extends State<ReportsMenu> {
           const Card(
             elevation: 5.0,
             margin: EdgeInsets.symmetric(horizontal: 25.0),
+            // CHART DE AGUA ---------------------------------------------------------------
             child: SFHydratationLineChart(),
           ),
         ],

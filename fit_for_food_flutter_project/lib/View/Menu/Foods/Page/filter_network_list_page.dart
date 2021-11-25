@@ -5,6 +5,14 @@ import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Widget/search_widget.dart';
 import 'package:flutter/material.dart';
 
+/*
+ ------------------------------------------------------------------------------------------
+ CLASE NO USADA 
+ - Este clase es para listar alimentos de una API en GitHub
+ -  OJO: Se está usando en su reemplazo es listado_alimentos_Page.dart
+------------------------------------------------------------------------------------------
+*/
+
 class FilterNetworkListPage extends StatefulWidget {
   @override
   FilterNetworkListPageState createState() => FilterNetworkListPageState();
@@ -47,7 +55,6 @@ class FilterNetworkListPageState extends State<FilterNetworkListPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        
         body: Column(
           children: <Widget>[
             buildSearch(),
@@ -92,14 +99,13 @@ class FilterNetworkListPageState extends State<FilterNetworkListPage> {
         title: Text(food.name),
         subtitle: Text(food.calorias),
         trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(food.peso, 
-                  style: TextStyle(
-                    color: Colors.grey
-                  ),
-                )
-              ],
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              food.peso,
+              style: TextStyle(color: Colors.grey),
+            )
+          ],
         ),
       );
 }

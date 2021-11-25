@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-/* <--------------- Gráfico hidratación ---------------> */
+/* <------------------------------ GRÁFICO_HIDRATACIÓN ------------------------------> */
 class SFHydratationLineChart extends StatefulWidget {
   const SFHydratationLineChart({Key? key}) : super(key: key);
 
@@ -74,7 +74,7 @@ class _SFHydratationLineChartState extends State<SFHydratationLineChart> {
   }
 }
 
-/* <--------------- Gráfico calorías ---------------> */
+/* <------------------------------ GRÁFICO_CALORÍAS ------------------------------> */
 class SFCaloriesLineChart extends StatefulWidget {
   const SFCaloriesLineChart({Key? key}) : super(key: key);
 
@@ -147,7 +147,7 @@ class _SFCaloriesLineChartState extends State<SFCaloriesLineChart> {
   }
 }
 
-/* <--------------- Gráfico peso ---------------> */
+/* <------------------------------ GRÁFICO_PESO ------------------------------> */
 class SFWeightLineChart extends StatefulWidget {
   const SFWeightLineChart({Key? key}) : super(key: key);
 
