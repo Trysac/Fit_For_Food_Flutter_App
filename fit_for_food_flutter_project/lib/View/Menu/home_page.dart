@@ -1,3 +1,4 @@
+import 'package:fit_for_food_flutter_project/View/Menu/Notifications/notification_page.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Weight/weight_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -89,14 +90,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const ListTile(
-                    leading: Icon(Icons.people_outline),
-                    title: Text('Nosotros')),
-                const ListTile(
                     leading: Icon(Icons.dark_mode_outlined),
                     title: Text('Modo nocturno')),
-                const ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text('Configuración')),
+                ListTile(
+                    leading: const Icon(Icons.notifications),
+                    title: const Text('Notificaciones'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationPage(),
+                          ));
+                    }),
                 MaterialButton(
                   padding: const EdgeInsets.only(right: 10.0),
                   onPressed: () {
