@@ -89,9 +89,11 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+                // MODO NOCTURNO -------------------------------------------------------------
                 const ListTile(
                     leading: Icon(Icons.dark_mode_outlined),
                     title: Text('Modo nocturno')),
+                // NOTIFICACIONES -------------------------------------------------------------
                 ListTile(
                     leading: const Icon(Icons.notifications),
                     title: const Text('Notificaciones'),
@@ -102,6 +104,7 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => const NotificationPage(),
                           ));
                     }),
+                // CERRAR SESIÓN -------------------------------------------------------------
                 MaterialButton(
                   padding: const EdgeInsets.only(right: 10.0),
                   onPressed: () {
@@ -118,6 +121,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           body: _pages[_actualPage],
+          // BOTONES INFERIORES -------------------------------------------------------------
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Colors.green,
             unselectedItemColor: Colors.black45,

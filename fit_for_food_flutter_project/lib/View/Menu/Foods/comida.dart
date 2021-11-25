@@ -12,6 +12,7 @@ class ComidasPage extends StatefulWidget {
 }
 
 class _ComidasPageState extends State<ComidasPage> {
+  // Se usa 2 para ir al listado_alimentos_page.dart------------------------------------------
   int index = 2;
 
   @override
@@ -24,11 +25,11 @@ class _ComidasPageState extends State<ComidasPage> {
   Widget builPages() {
     switch (index) {
       case 0:
-        return FilterLocalListPage();
+        return FilterLocalListPage(); // No usado
       case 1:
-        return FilterNetworkListPage();
+        return FilterNetworkListPage(); // No usado
       case 2:
-        return ListadoAlimentos();
+        return ListadoAlimentos(); // OK
       default:
         return Container();
     }

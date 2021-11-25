@@ -2,6 +2,7 @@ import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// HOME MENU (desayuno - almuerzo - cena)-----------------------------------------------------
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key? key}) : super(key: key);
 
@@ -18,12 +19,14 @@ class _HomeMenuState extends State<HomeMenu> {
         child: Column(
           children: <Widget>[
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+            // CALENDARIO (DÍA ACTUAL) --------------------------------------------------------
             _CalendarToday(),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
             const Text(
               'Calorías totales',
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
+            // BARRA DE PROGRESO -------------------------------------------------------------
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -47,6 +50,7 @@ class _HomeMenuState extends State<HomeMenu> {
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+            // DESAYUNO -------------------------------------------------------------------
             Row(
               children: [
                 Container(
@@ -125,6 +129,8 @@ class _HomeMenuState extends State<HomeMenu> {
               ],
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+
+            // ALMUERZO -------------------------------------------------------------------
             Row(
               children: [
                 Container(
@@ -203,6 +209,8 @@ class _HomeMenuState extends State<HomeMenu> {
               ],
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+
+            // CENA -------------------------------------------------------------------
             Row(
               children: [
                 Container(
@@ -249,6 +257,8 @@ class _HomeMenuState extends State<HomeMenu> {
               ],
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+
+            // OTROS -------------------------------------------------------------------
             Row(
               children: [
                 Container(
@@ -302,6 +312,7 @@ class _HomeMenuState extends State<HomeMenu> {
   }
 }
 
+// CALENDARIO (DÍA ACTUAL) -----------------------------------------------------------------
 Widget _CalendarToday() {
   DateTime date = DateTime.now();
   List<String> month = [
@@ -344,6 +355,7 @@ Widget _CalendarToday() {
   );
 }
 
+// PINTADO 1--------------------------------------------------------------------------------
 class OpenPainter1 extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -357,6 +369,7 @@ class OpenPainter1 extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
+// PINTADO 1--------------------------------------------------------------------------------
 class OpenPainter2 extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
