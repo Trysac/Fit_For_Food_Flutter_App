@@ -74,6 +74,7 @@ class _SFHydratationLineChartState extends State<SFHydratationLineChart> {
   }
 }
 
+//
 /* <------------------------------ GRÁFICO_CALORÍAS ------------------------------> */
 class SFCaloriesLineChart extends StatefulWidget {
   const SFCaloriesLineChart({Key? key}) : super(key: key);
