@@ -210,7 +210,7 @@ class _HomeMenuState extends State<HomeMenu> {
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
 
-            // CENA -------------------------------------------------------------------
+            // CENA -----------------------------------------------------------------------
             Row(
               children: [
                 Container(
@@ -258,7 +258,7 @@ class _HomeMenuState extends State<HomeMenu> {
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
 
-            // OTROS -------------------------------------------------------------------
+            // OTROS ------------------------------------------------------------------------
             Row(
               children: [
                 Container(
