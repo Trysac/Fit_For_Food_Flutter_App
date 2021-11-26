@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../login_page.dart';
 
 class RecoverPage extends StatefulWidget {
-  RecoverPage({Key? key}) : super(key: key);
+
 
   @override
   _RecoverPageState createState() => _RecoverPageState();
@@ -17,7 +17,7 @@ class _RecoverPageState extends State<RecoverPage> {
         title: Text('Nueva contraseña'),
       ),
       body: Padding(
-          padding: const EdgeInsets.all(30),
+          padding: EdgeInsets.all(30),
           child: Center(
               child: SingleChildScrollView(
                   child: Column(
@@ -28,36 +28,36 @@ class _RecoverPageState extends State<RecoverPage> {
                   width: 130.0,
                   child: Image.asset('assets/images/llave.png'),
                 ),
-                const SizedBox(height: 20.0),
+                 SizedBox(height: 20.0),
                 Text(
                   'Recuperar contraseña',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
                 ),
-                const SizedBox(height: 20.0),
+                 SizedBox(height: 20.0),
                 Divider(height: 10.0, color: Colors.black54),
-                const SizedBox(height: 20.0),
+                 SizedBox(height: 20.0),
                 TextFormField(
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     labelText: 'Nueva contraseña',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.lock),
                     suffixIcon: Icon(Icons.remove_red_eye),
                   ),
                 ),
-                const SizedBox(height: 20.0),
+                 SizedBox(height: 20.0),
                 TextFormField(
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     labelText: 'Confirmar contraseña',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.lock),
                     suffixIcon: Icon(Icons.remove_red_eye),
                   ),
                 ),
-                const SizedBox(height: 20.0),
+                SizedBox(height: 20.0),
                 Container(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   width: double.infinity,
@@ -73,7 +73,7 @@ class _RecoverPageState extends State<RecoverPage> {
                       );
                     },
                     color: Colors.green,
-                    child: const Text(
+                    child:  Text(
                       'Aceptar',
                       style: TextStyle(
                         fontSize: 20,
