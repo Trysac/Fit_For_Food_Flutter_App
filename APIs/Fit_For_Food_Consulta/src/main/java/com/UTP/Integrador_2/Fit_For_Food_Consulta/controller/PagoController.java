@@ -3,11 +3,9 @@ package com.UTP.Integrador_2.Fit_For_Food_Consulta.controller;
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.beans.PagoBean;
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.services.PagoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
 public class PagoController {
 
     @Autowired
@@ -24,7 +22,7 @@ public class PagoController {
         try {
             this.pagoService.create(newRegister, userID);
             return "Registro Agregado";
-        } catch(Exception ex){
+        } catch (Exception ex) {
             return "Error al agregar el registro : " + ex.getMessage();
         }
     }

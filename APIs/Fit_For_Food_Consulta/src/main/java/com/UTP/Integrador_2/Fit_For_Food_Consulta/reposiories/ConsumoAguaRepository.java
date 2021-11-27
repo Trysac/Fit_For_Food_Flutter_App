@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface ConsumoAguaRepository extends CrudRepository<ConsumoAguaModel, Integer> {
 
-    @Query("select c from consumo_agua c where idUsuario = :userId")
+    @Query("select c from ConsumoAguaModel c where idUsuario = :userId")
     Optional<ConsumoAguaModel> findUserById(@Param("userId") int userId);
 }

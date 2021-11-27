@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface CaloriasRepository extends CrudRepository<CaloriasModel, Integer> {
 
-    @Query("select c from calorias c where idUsuario = :userId")
+    @Query("select c from CaloriasModel c where idUsuario = :userId")
     Optional<CaloriasModel> findUserById(@Param("userId") int userId);
 }

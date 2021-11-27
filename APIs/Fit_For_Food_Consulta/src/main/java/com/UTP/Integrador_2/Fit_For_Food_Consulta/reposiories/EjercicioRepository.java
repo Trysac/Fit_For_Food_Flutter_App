@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface EjercicioRepository extends CrudRepository<EjercicioModel, Integer> {
 
-    @Query("select e from ejercicio e where idUsuario = :userId")
+    @Query("select e from EjercicioModel e where idUsuario = :userId")
     Optional<EjercicioModel> findUserById(@Param("userId") int userId);
 }

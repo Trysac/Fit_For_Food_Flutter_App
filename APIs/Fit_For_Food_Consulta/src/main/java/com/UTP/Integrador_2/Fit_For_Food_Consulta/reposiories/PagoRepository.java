@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface PagoRepository extends CrudRepository<PagoModel, Integer> {
 
-    @Query("select p from pago p where idUsuario = :userId")
+    @Query("select p from PagoModel p where idUsuario = :userId")
     Optional<PagoModel> findUserById(@Param("userId") int userId);
 }

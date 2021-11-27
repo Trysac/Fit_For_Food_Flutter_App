@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface NotificacionesRepository extends CrudRepository<NotificacionesModel, Integer> {
 
-    @Query("select n from notificaciones n where idUsuario = :userId")
+    @Query("select n from NotificacionesModel n where idUsuario = :userId")
     Optional<NotificacionesModel> findUserById(@Param("userId") int userId);
 }

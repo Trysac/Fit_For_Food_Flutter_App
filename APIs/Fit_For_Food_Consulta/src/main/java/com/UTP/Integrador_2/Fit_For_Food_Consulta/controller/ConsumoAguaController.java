@@ -5,6 +5,7 @@ import com.UTP.Integrador_2.Fit_For_Food_Consulta.services.ConsumoAguaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
 public class ConsumoAguaController {
 
     @Autowired
@@ -21,7 +22,7 @@ public class ConsumoAguaController {
         try {
             this.consumoAguaService.create(newRegister, userID);
             return "Registro Agregado";
-        } catch(Exception ex){
+        } catch (Exception ex) {
             return "Error al agregar el registro : " + ex.getMessage();
         }
     }
@@ -31,7 +32,7 @@ public class ConsumoAguaController {
         try {
             this.consumoAguaService.Update(register, userID);
             return "Registro Actualizado con exito";
-        } catch(Exception ex){
+        } catch (Exception ex) {
             return "Error al Actualizar el registro : " + ex.getMessage();
         }
     }

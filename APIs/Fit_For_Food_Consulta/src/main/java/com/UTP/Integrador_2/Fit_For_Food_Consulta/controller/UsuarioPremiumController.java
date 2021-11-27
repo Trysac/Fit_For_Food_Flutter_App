@@ -1,14 +1,11 @@
 package com.UTP.Integrador_2.Fit_For_Food_Consulta.controller;
 
-import com.UTP.Integrador_2.Fit_For_Food_Consulta.beans.ConsumoAguaBean;
-import com.UTP.Integrador_2.Fit_For_Food_Consulta.beans.PagoBean;
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.beans.UsuarioPremiumBean;
 import com.UTP.Integrador_2.Fit_For_Food_Consulta.services.UsuarioPremiumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@RestController
 public class UsuarioPremiumController {
 
     @Autowired
@@ -25,7 +22,7 @@ public class UsuarioPremiumController {
         try {
             this.usuarioPremiumService.create(newRegister, userID);
             return "Registro Agregado";
-        } catch(Exception ex){
+        } catch (Exception ex) {
             return "Error al agregar el registro : " + ex.getMessage();
         }
     }
@@ -35,7 +32,7 @@ public class UsuarioPremiumController {
         try {
             this.usuarioPremiumService.Update(register, userID);
             return "Registro Actualizado con exito";
-        } catch(Exception ex){
+        } catch (Exception ex) {
             return "Error al Actualizar el registro : " + ex.getMessage();
         }
     }

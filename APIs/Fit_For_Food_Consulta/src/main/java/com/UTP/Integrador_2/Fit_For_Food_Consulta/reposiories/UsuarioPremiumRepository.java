@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface UsuarioPremiumRepository extends CrudRepository<UsuarioPremiumModel, Integer> {
 
-    @Query("select u from usuario_premium u where idUsuario = :userId")
+    @Query("select u from UsuarioPremiumModel u where idUsuario = :userId")
     Optional<UsuarioPremiumModel> findUserById(@Param("userId") int userId);
 }

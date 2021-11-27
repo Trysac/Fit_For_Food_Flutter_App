@@ -4,9 +4,11 @@ import com.UTP.Integrador_2.Fit_For_Food_Login.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+@RestController
 public class UsuarioController {
 
     @Autowired
@@ -16,7 +18,7 @@ public class UsuarioController {
     public String validateUser(@PathVariable Map<String, String> userCredencials) {
         String pass = userCredencials.get("password");
         String mail = userCredencials.get("email");
-        String validationResult = usuarioService.validateUser(mail,pass);
+        String validationResult = usuarioService.validateUser(mail, pass);
         return validationResult;
     }
 

@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "usuario_premium")
+@Entity
 @Table(name = "usuario_premium")
 @Getter
 @Setter
@@ -34,17 +34,17 @@ public class UsuarioPremiumModel {
     private byte estadoSuscripcion;
 
     public boolean getEstadoSuscripcion() {
-        if (estadoSuscripcion == 0){
+        if (estadoSuscripcion == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     public void setEstadoSuscripcion(boolean estado) {
-        if (estado){
+        if (estado) {
             this.estadoSuscripcion = 0;
-        }else{
+        } else {
             this.estadoSuscripcion = 1;
         }
     }
