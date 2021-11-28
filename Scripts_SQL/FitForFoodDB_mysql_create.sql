@@ -64,6 +64,7 @@ CREATE TABLE `Alimento` (
 	`ID` INT NOT NULL AUTO_INCREMENT,
 	`Nombre` varchar(50) NOT NULL UNIQUE,
 	`Tipo` varchar(30) NOT NULL,
+	`ImagenURL` varchar(100),
 	`Calorias` FLOAT(8) NOT NULL,
 	`Objetivo_Cal_Relacionado` varchar(40) NOT NULL,
 	`Grado_Recomendacion` INT(1) NOT NULL,

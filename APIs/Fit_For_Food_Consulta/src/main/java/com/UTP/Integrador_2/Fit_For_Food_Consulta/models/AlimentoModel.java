@@ -33,6 +33,9 @@ public class AlimentoModel {
     @Column(name = "Grado_Recomendacion", nullable = false)
     private byte gradoRecomendacion;
 
+    @Column(name = "ImagenURL")
+    private byte imagenURL;
+
 
     public void setGradoRecomendacion(GradoRecomendacion gradoRecomendacion) {
         switch (gradoRecomendacion) {

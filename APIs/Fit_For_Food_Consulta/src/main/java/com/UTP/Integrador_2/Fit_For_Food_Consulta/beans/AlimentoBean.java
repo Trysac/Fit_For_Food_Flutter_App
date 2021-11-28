@@ -12,4 +12,5 @@ public class AlimentoBean {
     private float calorias;
     private String objetivoRelacionado;
     private byte gradoRecomendacion;
+    private String imagenURL;
 }
