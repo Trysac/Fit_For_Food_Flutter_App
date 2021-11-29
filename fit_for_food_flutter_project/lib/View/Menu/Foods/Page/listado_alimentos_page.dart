@@ -146,7 +146,7 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("${dataAlimento.tipo} - ${dataAlimento.medida}"),
-            Text("${dataAlimento.calorias + 100} calorías"),
+            Text("${dataAlimento.calorias} calorías"),
           ],
         ),
         trailing: Row(
@@ -161,65 +161,130 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
         ),
         onTap: () {
           print('PAGE/LISTADO: alimento presionado');
-          _mostrarAlert(context, dataAlimento);
+          _mostrarAlert(dataAlimento);
         },
       ),
     );
   }
-}
 
-//  DIALOG DE REGISTRO DE ALIMENTOS -----------------------------------------------------------
-void _mostrarAlert(BuildContext context, Alimentos alimento) {
-  showDialog(
-      //Contexto de la página
-      context: context,
-      //Cerrar ventana desde afuera
-      barrierDismissible: true,
-      //Función encargada de crear el dialog
-      builder: (context) {
-        return AlertDialog(
-            //Redondear borde
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            title: Text('Registrar consumo'),
-            content: Column(
-              //Ajustar altura de la columna
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                    '¿Está seguro que desea registrar el consumo de ${alimento.medida} de ${alimento.nombre}?'),
-                //Logo de flutter
-                SizedBox(height: 20),
-                Image(image: NetworkImage(alimento.imagen), height: 100)
-              ],
-            ),
-            actions: [
-              //Botones de texto
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Cancelar')),
-              TextButton(
-                  onPressed: () async {
-                    await ListadoAlimentosState.registrarConsumo(
-                        ConsumoAlimentos(
-                            calorias: alimento.calorias,
-                            day: DateTime.now().day,
-                            month: DateTime.now().month,
-                            nombre: alimento.nombre,
-                            tipo: alimento.tipo,
-                            year: DateTime.now().year));
-                    // MOSTRAR LO QUE SE VA A MOSTRAR
-                    print("calorías: ${alimento.calorias}");
-                    print("día: ${DateTime.now().day}");
-                    print("mes: ${DateTime.now().month}");
-                    print("nombre: ${alimento.nombre}");
-                    print("tipo: ${alimento.tipo}");
-                    print("año: ${DateTime.now().year}");
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Aceptar'))
-            ]);
+  //  DIALOG DE REGISTRO DE ALIMENTOS -----------------------------------------------------------
+  void _mostrarAlert(Alimentos alimento) {
+    //LISTADO COMBO BOX
+    List<String> _horarioAlimento = ['Otros', 'Desayuno', 'Almuerzo', 'Cena'];
+    String _horarioSeleccionado = 'Otros';
+    // COMBO BOX para registro de alimento (desayuno - almuerzo - cena)
+    List<DropdownMenuItem<String>> getHorarioDropdown() {
+      List<DropdownMenuItem<String>> listaHorario = [];
+      _horarioAlimento.forEach((horario) {
+        listaHorario
+            .add(DropdownMenuItem(child: Text(horario), value: horario));
       });
+      return listaHorario;
+    }
+
+    // DIALOG como tal
+    showDialog(
+        //Contexto de la página
+        context: context,
+        //Cerrar ventana desde afuera
+        barrierDismissible: true,
+        //Función encargada de crear el dialog
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                  //Redondear borde
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  title: Text('Registrar consumo de alimento'),
+                  content: Column(
+                    //Ajustar altura de la columna
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                          'Se registrará el consumo de ${alimento.medida} de ${alimento.nombre}'),
+                      //Logo de flutter
+                      SizedBox(height: 20),
+                      Image(image: NetworkImage(alimento.imagen), height: 100),
+                      SizedBox(height: 20),
+
+                      // Seleccionar listado de alimentos -------
+                      // Texto
+                      Row(children: [
+                        Text("Seleccionar horario de registro"),
+                        SizedBox(width: 5),
+                        Icon(Icons.watch_later_outlined),
+                      ]),
+                      SizedBox(height: 10),
+                      // Combobox (dropdown) horario ............
+                      Row(children: [
+                        Expanded(
+                          child: DecoratedBox(
+                            decoration: const ShapeDecoration(
+                              color: Colors.white30,
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 1.0,
+                                    style: BorderStyle.solid,
+                                    color: Colors.green),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0)),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 0.0),
+                              child: DropdownButton(
+                                iconSize: 45,
+                                iconEnabledColor: Colors.green,
+                                isExpanded: true,
+                                value: _horarioSeleccionado,
+                                items: getHorarioDropdown(),
+                                onChanged: (opt) {
+                                  print(opt);
+                                  setState(() {
+                                    _horarioSeleccionado = opt.toString();
+                                    //TODO: Agregar guardado de horario --------------
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    ],
+                  ),
+                  // ACTION - GUARDAR CONSUMO DE ALIMENTO---------------------------------
+                  actions: [
+                    //Botones de texto
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Cancelar')),
+                    TextButton(
+                        onPressed: () async {
+                          await ListadoAlimentosState.registrarConsumo(
+                              ConsumoAlimentos(
+                                  calorias: alimento.calorias,
+                                  day: DateTime.now().day,
+                                  month: DateTime.now().month,
+                                  nombre: alimento.nombre,
+                                  tipo: alimento.tipo,
+                                  year: DateTime.now().year));
+                          // MOSTRAR LO QUE SE VA A GUARDA
+                          print("calorías: ${alimento.calorias}");
+                          print("día: ${DateTime.now().day}");
+                          print("mes: ${DateTime.now().month}");
+                          print("nombre: ${alimento.nombre}");
+                          print("tipo: ${alimento.tipo}");
+                          print("año: ${DateTime.now().year}");
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Aceptar'))
+                  ]);
+            },
+          );
+        });
+  }
 }
