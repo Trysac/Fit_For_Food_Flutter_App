@@ -13,4 +13,5 @@ public class AlimentoBean {
     private String objetivoRelacionado;
     private byte gradoRecomendacion;
     private String imagenURL;
+    private int medida;
 }

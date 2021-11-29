@@ -20,6 +20,20 @@ CREATE TABLE `Calorias` (
 	PRIMARY KEY (`ID_Registro`)
 );
 
+CREATE TABLE `Registros_Calorias` (
+	`ID_Registro` INT NOT NULL AUTO_INCREMENT,
+	`ID_Usuario` INT NOT NULL UNIQUE,
+	`Cal_dia` INT,
+	`Cal_mes` INT,
+	`Cal_año` INT,
+	`Cal_medida` INT,
+	`Cal_calorias` FLOAT,
+	`Cal_nombre` varchar(100) NOT NULL,
+	`Cal_tipo` varchar(100),
+	`Cal_imagenURL` varchar(100),
+	PRIMARY KEY (`ID_Registro`)
+);
+
 CREATE TABLE `Consumo_Agua` (
 	`ID_Registro` INT NOT NULL AUTO_INCREMENT,
 	`ID_Usuario` INT NOT NULL UNIQUE,
