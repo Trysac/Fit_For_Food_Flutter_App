@@ -52,9 +52,10 @@ class _HomeMenuState extends State<HomeMenu> {
   late List<ConsumoAlimentos> _listAlmuerzo = [];
   late List<ConsumoAlimentos> _listCena = [];
   late List<ConsumoAlimentos> _listMostrar = [];
+
   //LISTADO COMBO BOX
   List<String> _horarioAlimento = ['Otros', 'Desayuno', 'Almuerzo', 'Cena'];
-  String _horarioSeleccionado = 'Otros';
+  String _horarioSeleccionado = "Otros";
   // COMBO BOX para listado de alimento (desayuno - almuerzo - cena)
   List<DropdownMenuItem<String>> _getHorarioDropdown() {
     List<DropdownMenuItem<String>> listaHorario = [];
@@ -155,7 +156,6 @@ class _HomeMenuState extends State<HomeMenu> {
                         setState(() {
                           _horarioSeleccionado = _opt.toString();
                           //TODO: Mostrar pantalla --------------
-                          _condicionalListado();
                         });
                       },
                     ),
@@ -165,8 +165,9 @@ class _HomeMenuState extends State<HomeMenu> {
             ]),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
             // Listado ------------------------------------------------------------
+
             ListadoConsumoHorario(
-                listMostrar: _listMostrar,
+                listMostrar: _listconsumo,
                 horarioSeleccionado: _horarioSeleccionado),
 
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
@@ -178,44 +179,6 @@ class _HomeMenuState extends State<HomeMenu> {
 
 /* <------------------------------ MÉTODOS ADICIONALES ------------------------------> */
 
-  void _condicionalListado() {
-    if (_horarioSeleccionado == "Otros") {
-      _listOtros = [];
-      for (var i = 0; i < _listConsumo.length; i++) {
-        if (_listConsumo[i].horario == "Otros") {
-          _listOtros.add(_listConsumo[i]);
-        }
-      }
-      _listMostrar = _listOtros;
-    } else if (_horarioSeleccionado == "Desayuno") {
-      _listDesayuno = [];
-      for (var i = 0; i < _listConsumo.length; i++) {
-        if (_listConsumo[i].horario == "Desayuno") {
-          _listDesayuno.add(_listConsumo[i]);
-        }
-      }
-      _listMostrar = _listDesayuno;
-    } else if (_horarioSeleccionado == "Almuerzo") {
-      _listAlmuerzo = [];
-      for (var i = 0; i < _listConsumo.length; i++) {
-        if (_listConsumo[i].horario == "Almuerzo") {
-          _listAlmuerzo.add(_listConsumo[i]);
-        }
-      }
-      _listMostrar = _listAlmuerzo;
-    } else if (_horarioSeleccionado == "Cena") {
-      _listCena = [];
-      for (var i = 0; i < _listConsumo.length; i++) {
-        if (_listConsumo[i].horario == "Cena") {
-          _listCena.add(_listConsumo[i]);
-        }
-      }
-      _listMostrar = _listCena;
-    } else {
-      _listMostrar = [];
-    }
-    ;
-  }
 }
 
 // CALENDARIO (DÍA ACTUAL) --------------------------------------------------------------
