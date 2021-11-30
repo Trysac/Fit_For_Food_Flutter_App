@@ -8,6 +8,7 @@ import 'package:fit_for_food_flutter_project/View/Menu/Foods/Api/foods_api.dart'
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Widget/search_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:http/http.dart' as http;
 // SERVICIO: Hacer peticiones HTTP
@@ -52,12 +53,29 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
    POST: REGISTRAR CONSUMO
    https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json
 */
-  static Future _registrarConsumo(ConsumoAlimentos consumo) async {
+  // Funciones para leer del flutter secure Storage
+  final _storage = new FlutterSecureStorage();
+  Future<String> readToken() async {
+    return await _storage.read(key: 'token') ?? '';
+  }
+
+  Future<String> readId() async {
+    return await _storage.read(key: 'idusuario') ?? '';
+  }
+
+  Future _registrarConsumo(ConsumoAlimentos consumo) async {
+    String _token = await readToken();
+    String _idusuario = await readId();
+
     final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
+    /*
     String url =
         "https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json";
-    Uri uri = Uri.parse(url);
-    final response = await http.post(uri, body: consumo.toJson());
+    Uri uri = Uri.parse(url);*/
+    final url = Uri.https(_baseUrl, 'usuarios/$_idusuario/consumo.json',
+        {'auth': await _storage.read(key: 'token') ?? ''});
+
+    final response = await http.post(url, body: consumo.toJson());
     final decodedData = json.decode(response.body);
     print("PAGE/LISTADO ALIMENTO: registrar consumo de alimento");
     print(decodedData);
@@ -175,6 +193,7 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
 
   //  DIALOG DE REGISTRO DE ALIMENTOS -----------------------------------------------------------
   void _mostrarAlert(Alimentos alimento) {
+    bool _firstClick = true;
     //LISTADO COMBO BOX
     List<String> _horarioAlimento = ['Otros', 'Desayuno', 'Almuerzo', 'Cena'];
     String _horarioSeleccionado = 'Otros';
@@ -270,27 +289,31 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
                         child: Text('Cancelar')),
                     TextButton(
                         onPressed: () async {
-                          await ListadoAlimentosState._registrarConsumo(
-                              ConsumoAlimentos(
-                                  calorias: alimento.calorias,
-                                  day: DateTime.now().day,
-                                  horario: _horarioSeleccionado,
-                                  imagen: alimento.imagen,
-                                  medida: alimento.medida,
-                                  month: DateTime.now().month,
-                                  nombre: alimento.nombre,
-                                  tipo: alimento.tipo,
-                                  year: DateTime.now().year));
-                          // PRINT para verificar valores que se registraron en el consumo
-                          print("calorías: ${alimento.calorias}");
-                          print("día: ${DateTime.now().day}");
-                          print("horario: ${_horarioSeleccionado}");
-                          print("medida: ${alimento.medida}");
-                          print("mes: ${DateTime.now().month}");
-                          print("nombre: ${alimento.nombre}");
-                          print("tipo: ${alimento.tipo}");
-                          print("año: ${DateTime.now().year}");
-                          Navigator.of(context).pop();
+                          if (_firstClick) {
+                            _firstClick = false;
+                            await _registrarConsumo(ConsumoAlimentos(
+                                calorias: alimento.calorias,
+                                day: DateTime.now().day,
+                                horario: _horarioSeleccionado,
+                                imagen: alimento.imagen,
+                                medida: alimento.medida,
+                                month: DateTime.now().month,
+                                nombre: alimento.nombre,
+                                tipo: alimento.tipo,
+                                year: DateTime.now().year));
+
+                            // PRINT para verificar valores que se registraron en el consumo
+                            print("calorías: ${alimento.calorias}");
+                            print("día: ${DateTime.now().day}");
+                            print("horario: ${_horarioSeleccionado}");
+                            print("medida: ${alimento.medida}");
+                            print("mes: ${DateTime.now().month}");
+                            print("nombre: ${alimento.nombre}");
+                            print("tipo: ${alimento.tipo}");
+                            print("año: ${DateTime.now().year}");
+
+                            Navigator.of(context).pop();
+                          } else {}
                         },
                         child: Text('Aceptar'))
                   ]);

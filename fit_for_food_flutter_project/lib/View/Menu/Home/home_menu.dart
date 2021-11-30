@@ -3,6 +3,7 @@ import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Page/listado_consumo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
 // SERVICIO: Hacer peticiones HTTP
 import 'dart:convert';
@@ -23,15 +24,33 @@ class _HomeMenuState extends State<HomeMenu> {
    POST: REGISTRAR CONSUMO
    https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json
 */
+  // Funciones para leer del flutter secure Storage
+  final _storage = new FlutterSecureStorage();
+  Future<String> readToken() async {
+    return await _storage.read(key: 'token') ?? '';
+  }
+
+  Future<String> readId() async {
+    return await _storage.read(key: 'idusuario') ?? '';
+  }
+
   final List<ConsumoAlimentos> _listConsumo = [];
 
   Future _listarConsumo() async {
+    String _token = await readToken();
+    String _idusuario = await readId();
+
+    print("ID USUARIO: " + _idusuario);
     final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
-    String url =
-        "https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json";
-    Uri uri = Uri.parse(url);
-    final response = await http.get(uri);
+    /*String url =
+      "https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json";
+    Uri uri = Uri.parse(url);*/
+    final url = Uri.https(_baseUrl, 'usuarios/$_idusuario/consumo.json',
+        {'auth': await _storage.read(key: 'token') ?? ''});
+    final response = await http.get(url);
+    if (json.decode(response.body) == null) return _listConsumo;
     final Map<String, dynamic> consumoMap = json.decode(response.body);
+
     //Imprimir Json
     print("PAGE/LISTADO CONSUMO: cargar alimentos");
     consumoMap.forEach((key, value) {

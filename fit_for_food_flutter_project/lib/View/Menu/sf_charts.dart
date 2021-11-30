@@ -1,6 +1,11 @@
+import 'package:fit_for_food_flutter_project/Modules/consumo_models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 /* <------------------------------ GRÁFICO_HIDRATACIÓN ------------------------------> */
 class SFHydratationLineChart extends StatefulWidget {
@@ -11,49 +16,83 @@ class SFHydratationLineChart extends StatefulWidget {
 }
 
 class _SFHydratationLineChartState extends State<SFHydratationLineChart> {
+  int largo = 0;
+  // Funciones para leer del flutter secure Storage
+  final _storage = new FlutterSecureStorage();
+  Future<String> readToken() async {
+    return await _storage.read(key: 'token') ?? '';
+  }
+
+  Future<String> readId() async {
+    return await _storage.read(key: 'idusuario') ?? '';
+  }
+
+  //-----------------SERVICES - CARGAR CONSUMO ----------------------
+  // NOTA: Luego se optimizará para trabajarlo separado
+
+  // GET: LISTAR CONSUMO DE ALIMENTOS
+  // https://pruebafirebaserest-default-rtdb.firebaseio.com/alimentos.json
+
+  final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
+  final List<ConsumoAlimentos> listBebida = [];
+
+  Future<List<ConsumoAlimentos>> cargarConsumo() async {
+    String _token = await readToken();
+    String _idusuario = await readId();
+
+    final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
+
+    final url = Uri.https(_baseUrl, 'usuarios/$_idusuario/consumo.json',
+        {'auth': await _storage.read(key: 'token') ?? ''});
+
+    final response = await http.get(url);
+    if (json.decode(response.body) == null) return listBebida;
+    final Map<String, dynamic> _alimentosMap = json.decode(response.body);
+    //Imprimir Json
+    print("REPORTE/sf_chart: cargar alimentos");
+    _alimentosMap.forEach((key, value) {
+      final _temp = ConsumoAlimentos.fromMap(value);
+      if (_temp.tipo == "Bebida") {
+        _temp.id = key;
+        this.listBebida.add(_temp);
+      }
+    });
+    return this.listBebida;
+  }
+
+  //USADOS PARA EL LISTADO DE ALIMENTOS
+  List<ConsumoAlimentos> dataBebida = [];
+  late List<ConsumoAlimentos> lateBebida = [];
+  // INIT STATE
+  @override
+  void initState() {
+    super.initState();
+
+    cargarConsumo().then((value) {
+      setState(() {
+        dataBebida.addAll(value);
+        print("REPORTS/WEIGHT : chart calorías");
+        print(dataBebida);
+        lateBebida = dataBebida;
+      });
+    });
+  }
+
   DateTime minDateTime = DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day - 7);
   final DateTime _maxDateTime =
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
 
-  static List<ChartData> charData = [
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 16), 1.5),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 15), 2.0),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 14), 1.7),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 13), 1.9),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 12), 1.5),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 11), 1.3),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 10), 1.0),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 9), 1.8),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 8), 1.7),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 7), 2.1),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 6), 2.0),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 5), 2.4),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 4), 2.1),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 3), 1.8),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 2), 2.0),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 1), 1.8),
-    ChartData(DateTime(2021, DateTime.now().month, DateTime.now().day), 2.3),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<ChartData> _charData = [
+      for (int i = 0; i < lateBebida.length; i++)
+        ChartData(
+            DateTime(
+                lateBebida[i].year, lateBebida[i].month, lateBebida[i].day),
+            _sumarBebida(lateBebida[i])),
+    ];
+
     return SfCartesianChart(
       primaryXAxis: DateTimeAxis(
           dateFormat: DateFormat.MMMd(),
@@ -64,13 +103,28 @@ class _SFHydratationLineChartState extends State<SFHydratationLineChart> {
         LineSeries(
           markerSettings: const MarkerSettings(isVisible: true),
           width: 2.5,
-          dataSource: charData,
+          dataSource: _charData,
           dataLabelSettings: const DataLabelSettings(isVisible: true),
           xValueMapper: (ChartData data, _) => data.x,
           yValueMapper: (ChartData data, _) => data.y,
         )
       ],
     );
+  }
+
+  double _sumarBebida(ConsumoAlimentos consumo) {
+    int yearPrueba = consumo.year;
+    int monthPrueba = consumo.month;
+    int dayPrueba = consumo.day;
+    double sumCalorias = 0;
+    for (var i = 0; i < lateBebida.length; i++) {
+      if (yearPrueba == lateBebida[i].year &&
+          monthPrueba == lateBebida[i].month &&
+          dayPrueba == lateBebida[i].day) {
+        sumCalorias = sumCalorias + lateBebida[i].medida;
+      }
+    }
+    return sumCalorias;
   }
 }
 
@@ -84,49 +138,80 @@ class SFCaloriesLineChart extends StatefulWidget {
 }
 
 class _SFCaloriesLineChartState extends State<SFCaloriesLineChart> {
+  int largo = 0;
+  // Funciones para leer del flutter secure Storage
+  final _storage = new FlutterSecureStorage();
+  Future<String> readToken() async {
+    return await _storage.read(key: 'token') ?? '';
+  }
+
+  Future<String> readId() async {
+    return await _storage.read(key: 'idusuario') ?? '';
+  }
+  //-----------------SERVICES - CARGAR CONSUMO ----------------------
+  // NOTA: Luego se optimizará para trabajarlo separado
+
+  // GET: LISTAR CONSUMO DE ALIMENTOS
+  // https://pruebafirebaserest-default-rtdb.firebaseio.com/alimentos.json
+
+  final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
+  final List<ConsumoAlimentos> listCalorias = [];
+
+  Future<List<ConsumoAlimentos>> cargarConsumo() async {
+    String _token = await readToken();
+    String _idusuario = await readId();
+    final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
+
+    final url = Uri.https(_baseUrl, 'usuarios/$_idusuario/consumo.json',
+        {'auth': await _storage.read(key: 'token') ?? ''});
+
+    final response = await http.get(url);
+    if (json.decode(response.body) == null) return listCalorias;
+    final Map<String, dynamic> alimentosMap = json.decode(response.body);
+    //Imprimir Json
+    print("REPORT/sf_chart: cargar alimentos");
+    alimentosMap.forEach((key, value) {
+      final _temp = ConsumoAlimentos.fromMap(value);
+      //if (_temp.tipo != "Bebida") {
+      _temp.id = key;
+      this.listCalorias.add(_temp);
+      //}
+    });
+    return this.listCalorias;
+  }
+
+  //USADOS PARA EL LISTADO DE ALIMENTOS
+  List<ConsumoAlimentos> dataCalorias = [];
+  late List<ConsumoAlimentos> lateCalorias = [];
+  // INIT STATE
+  @override
+  void initState() {
+    super.initState();
+
+    cargarConsumo().then((value) {
+      setState(() {
+        dataCalorias.addAll(value);
+        print("REPORTS/sf_charts : chart calorías");
+        print(dataCalorias);
+        lateCalorias = dataCalorias;
+      });
+    });
+  }
+
   DateTime minDateTime = DateTime(
       DateTime.now().year, DateTime.now().month, DateTime.now().day - 7);
   final DateTime _maxDateTime =
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
 
-  static List<ChartData> charData = [
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 16), 1725),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 15), 1535),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 14), 1645),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 13), 1539),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 12), 1655),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 11), 1443),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 10), 1550),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 9), 1738),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 8), 1847),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 7), 1841),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 6), 1638),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 5), 1744),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 4), 1551),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 3), 1908),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 2), 1805),
-    ChartData(
-        DateTime(2021, DateTime.now().month, DateTime.now().day - 1), 2038),
-    ChartData(DateTime(2021, DateTime.now().month, DateTime.now().day), 2134),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<ChartData> charData = [
+      for (int i = 0; i < lateCalorias.length; i++)
+        ChartData(
+            DateTime(lateCalorias[i].year, lateCalorias[i].month,
+                lateCalorias[i].day),
+            _sumarCalorias(lateCalorias[i])),
+    ];
     return SfCartesianChart(
       primaryXAxis: DateTimeAxis(
           dateFormat: DateFormat.MMMd(),
@@ -145,6 +230,21 @@ class _SFCaloriesLineChartState extends State<SFCaloriesLineChart> {
         )
       ],
     );
+  }
+
+  double _sumarCalorias(ConsumoAlimentos consumo) {
+    int yearPrueba = consumo.year;
+    int monthPrueba = consumo.month;
+    int dayPrueba = consumo.day;
+    double sumCalorias = 0;
+    for (var i = 0; i < lateCalorias.length; i++) {
+      if (yearPrueba == lateCalorias[i].year &&
+          monthPrueba == lateCalorias[i].month &&
+          dayPrueba == lateCalorias[i].day) {
+        sumCalorias = sumCalorias + lateCalorias[i].calorias;
+      }
+    }
+    return sumCalorias;
   }
 }
 

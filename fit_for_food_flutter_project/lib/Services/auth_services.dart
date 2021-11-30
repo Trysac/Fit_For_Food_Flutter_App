@@ -31,9 +31,9 @@ class AuthServices extends ChangeNotifier {
       await storage.write(key: 'token', value: decodeResp['idToken']);
       print("SERVICES/AUTH SERVICES: Token : ${storage.read(key: 'token')}");
       // Write value
-      await storage.write(key: 'localId', value: decodeResp['localId']);
+      await storage.write(key: 'idusuario', value: decodeResp['localId']);
       print(
-          "SERVICES/AUTH SERVICES: LocalID : ${storage.read(key: 'localId')}");
+          "SERVICES/AUTH SERVICES: LocalID : ${storage.read(key: 'idusuario')}");
       //decodeResp['idToken']
       return null;
     } else {
