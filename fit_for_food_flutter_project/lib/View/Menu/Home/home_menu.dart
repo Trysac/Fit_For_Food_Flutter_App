@@ -1,6 +1,12 @@
+import 'package:fit_for_food_flutter_project/Modules/consumo_models.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
+import 'package:fit_for_food_flutter_project/View/Menu/Foods/Page/listado_consumo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
+// SERVICIO: Hacer peticiones HTTP
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 // HOME MENU (desayuno - almuerzo - cena)-----------------------------------------------------
 class HomeMenu extends StatefulWidget {
@@ -11,6 +17,68 @@ class HomeMenu extends StatefulWidget {
 }
 
 class _HomeMenuState extends State<HomeMenu> {
+  /*
+  INICIO SERVICES_REGISTRAR ALIMENTO --------------------------------------------------------------
+   NOTA: Luego se optimizará el código para trabajarlo separado
+   POST: REGISTRAR CONSUMO
+   https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json
+*/
+  final List<ConsumoAlimentos> _listConsumo = [];
+
+  Future _listarConsumo() async {
+    final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
+    String url =
+        "https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json";
+    Uri uri = Uri.parse(url);
+    final response = await http.get(uri);
+    final Map<String, dynamic> consumoMap = json.decode(response.body);
+    //Imprimir Json
+    print("PAGE/LISTADO CONSUMO: cargar alimentos");
+    consumoMap.forEach((key, value) {
+      final _temp = ConsumoAlimentos.fromMap(value);
+      _temp.id = key;
+      this._listConsumo.add(_temp);
+    });
+    return this._listConsumo;
+  }
+
+//FIN SERVICES_REGISTRAR ALIMENTO -----------------------------------------------------------
+  //USADOS PARA EL LISTADO DE ALIMENTOS
+  late List<ConsumoAlimentos> _listconsumo = [];
+  List<ConsumoAlimentos> _dataConsumo = [];
+  // LISTAS AUXILIARES
+  late List<ConsumoAlimentos> _listOtros = [];
+  late List<ConsumoAlimentos> _listDesayuno = [];
+  late List<ConsumoAlimentos> _listAlmuerzo = [];
+  late List<ConsumoAlimentos> _listCena = [];
+  late List<ConsumoAlimentos> _listMostrar = [];
+  //LISTADO COMBO BOX
+  List<String> _horarioAlimento = ['Otros', 'Desayuno', 'Almuerzo', 'Cena'];
+  String _horarioSeleccionado = 'Otros';
+  // COMBO BOX para listado de alimento (desayuno - almuerzo - cena)
+  List<DropdownMenuItem<String>> _getHorarioDropdown() {
+    List<DropdownMenuItem<String>> listaHorario = [];
+    _horarioAlimento.forEach((_horario) {
+      listaHorario
+          .add(DropdownMenuItem(child: Text(_horario), value: _horario));
+    });
+    return listaHorario;
+  }
+
+  // INIT STATE
+  @override
+  void initState() {
+    super.initState();
+    _listarConsumo().then((value) {
+      setState(() {
+        _dataConsumo.addAll(value);
+        print("PAGE/LISTADO CONSUMO: dataAlimento");
+        print(_dataConsumo);
+        _listconsumo = _dataConsumo;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -49,270 +117,108 @@ class _HomeMenuState extends State<HomeMenu> {
                 ),
               ),
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
-            // DESAYUNO -------------------------------------------------------------------
-            Row(
-              children: [
-                Container(
-                    padding: const EdgeInsets.only(bottom: 4.0),
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom:
-                                BorderSide(color: Colors.green, width: 4.0))),
-                    child: const Text('Desayuno',
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold))),
-              ],
-            ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Image.network(
-                  'https://cdn-icons-png.flaticon.com/512/123/123431.png',
-                  scale: 12.0,
-                ),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
-                const Text(
-                  'Manzana',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.end,
-                ),
-                Expanded(
-                  child: RichText(
-                    text: const TextSpan(
-                        style: TextStyle(color: Colors.black87, fontSize: 14.0),
-                        children: [
-                          TextSpan(
-                            text: '100 g\n',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          TextSpan(
-                            text: '52 calorías',
-                          ),
-                        ]),
-                    textAlign: TextAlign.end,
+            // DROPDOWN - CHECKBOX PARA LISTAR CONSUMO DE USUARIO -------------------------
+            // Seleccionar listado de alimentos -------
+            // Texto
+            Row(children: [
+              Text("Seleccionar horario de listado"),
+              SizedBox(width: 5),
+              Icon(Icons.watch_later_outlined),
+            ]),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+            // Combobox (dropdown) horario ............
+            Row(children: [
+              Expanded(
+                child: DecoratedBox(
+                  decoration: const ShapeDecoration(
+                    color: Colors.white30,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          width: 1.0,
+                          style: BorderStyle.solid,
+                          color: Colors.green),
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
                   ),
-                )
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Image.network(
-                  'https://cdn-icons-png.flaticon.com/512/2044/2044936.png',
-                  scale: 12.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 0.0),
+                    child: DropdownButton(
+                      iconSize: 45,
+                      iconEnabledColor: Colors.green,
+                      isExpanded: true,
+                      value: _horarioSeleccionado,
+                      items: _getHorarioDropdown(),
+                      onChanged: (_opt) {
+                        print(_opt);
+                        setState(() {
+                          _horarioSeleccionado = _opt.toString();
+                          //TODO: Mostrar pantalla --------------
+                          _condicionalListado();
+                        });
+                      },
+                    ),
+                  ),
                 ),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
-                const Text(
-                  'Plátano',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.end,
-                ),
-                Expanded(
-                  child: RichText(
-                      text: const TextSpan(
-                          style:
-                              TextStyle(color: Colors.black87, fontSize: 14.0),
-                          children: [
-                            TextSpan(
-                              text: '100 g\n',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: '89 calorías ',
-                            ),
-                          ]),
-                      textAlign: TextAlign.end),
-                )
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
-
-            // ALMUERZO -------------------------------------------------------------------
-            Row(
-              children: [
-                Container(
-                    padding: const EdgeInsets.only(bottom: 4.0),
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom:
-                                BorderSide(color: Colors.green, width: 4.0))),
-                    child: const Text('Almuerzo',
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold))),
-              ],
-            ),
+              ),
+            ]),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Image.network(
-                  'https://cdn-icons-png.flaticon.com/512/590/590689.png',
-                  scale: 12.0,
-                ),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
-                const Text(
-                  'Piña',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.end,
-                ),
-                Expanded(
-                  child: RichText(
-                      text: const TextSpan(
-                          style:
-                              TextStyle(color: Colors.black87, fontSize: 14.0),
-                          children: [
-                            TextSpan(
-                              text: '100 g\n',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: '50 calorías',
-                            ),
-                          ]),
-                      textAlign: TextAlign.end),
-                )
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Image.network(
-                  'https://cdn-icons-png.flaticon.com/512/590/590690.png',
-                  scale: 12.0,
-                ),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
-                const Text(
-                  'Kiwi',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.end,
-                ),
-                Expanded(
-                  child: RichText(
-                      text: const TextSpan(
-                          style:
-                              TextStyle(color: Colors.black87, fontSize: 14.0),
-                          children: [
-                            TextSpan(
-                              text: '100 g\n',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: '61 calorías',
-                            ),
-                          ]),
-                      textAlign: TextAlign.end),
-                )
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+            // Listado ------------------------------------------------------------
+            ListadoConsumoHorario(
+                listMostrar: _listMostrar,
+                horarioSeleccionado: _horarioSeleccionado),
 
-            // CENA -----------------------------------------------------------------------
-            Row(
-              children: [
-                Container(
-                    padding: const EdgeInsets.only(bottom: 4.0),
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom:
-                                BorderSide(color: Colors.green, width: 4.0))),
-                    child: const Text('Cena',
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold))),
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Image.network(
-                  'https://cdn-icons-png.flaticon.com/512/1514/1514922.png',
-                  scale: 12.0,
-                ),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
-                const Text(
-                  'Uvas',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.end,
-                ),
-                Expanded(
-                  child: RichText(
-                      text: const TextSpan(
-                          style:
-                              TextStyle(color: Colors.black87, fontSize: 14.0),
-                          children: [
-                            TextSpan(
-                              text: '100 g\n',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: '67 calorías',
-                            ),
-                          ]),
-                      textAlign: TextAlign.end),
-                )
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
-
-            // OTROS ------------------------------------------------------------------------
-            Row(
-              children: [
-                Container(
-                    padding: const EdgeInsets.only(bottom: 4.0),
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom:
-                                BorderSide(color: Colors.green, width: 4.0))),
-                    child: const Text('Otros',
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold))),
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Image.asset(
-                  'assets/images/postres.png',
-                  scale: 12.0,
-                ),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 3.0)),
-                const Text(
-                  'Postres',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.end,
-                ),
-                Expanded(
-                  child: RichText(
-                      text: const TextSpan(
-                          style:
-                              TextStyle(color: Colors.black87, fontSize: 14.0),
-                          children: [
-                            TextSpan(
-                              text: '70 g\n',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: '160 calorías',
-                            ),
-                          ]),
-                      textAlign: TextAlign.end),
-                )
-              ],
-            ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
           ],
         ),
       ),
     );
   }
+
+/* <------------------------------ MÉTODOS ADICIONALES ------------------------------> */
+
+  void _condicionalListado() {
+    if (_horarioSeleccionado == "Otros") {
+      _listOtros = [];
+      for (var i = 0; i < _listConsumo.length; i++) {
+        if (_listConsumo[i].horario == "Otros") {
+          _listOtros.add(_listConsumo[i]);
+        }
+      }
+      _listMostrar = _listOtros;
+    } else if (_horarioSeleccionado == "Desayuno") {
+      _listDesayuno = [];
+      for (var i = 0; i < _listConsumo.length; i++) {
+        if (_listConsumo[i].horario == "Desayuno") {
+          _listDesayuno.add(_listConsumo[i]);
+        }
+      }
+      _listMostrar = _listDesayuno;
+    } else if (_horarioSeleccionado == "Almuerzo") {
+      _listAlmuerzo = [];
+      for (var i = 0; i < _listConsumo.length; i++) {
+        if (_listConsumo[i].horario == "Almuerzo") {
+          _listAlmuerzo.add(_listConsumo[i]);
+        }
+      }
+      _listMostrar = _listAlmuerzo;
+    } else if (_horarioSeleccionado == "Cena") {
+      _listCena = [];
+      for (var i = 0; i < _listConsumo.length; i++) {
+        if (_listConsumo[i].horario == "Cena") {
+          _listCena.add(_listConsumo[i]);
+        }
+      }
+      _listMostrar = _listCena;
+    } else {
+      _listMostrar = [];
+    }
+    ;
+  }
 }
 
-// CALENDARIO (DÍA ACTUAL) -----------------------------------------------------------------
+// CALENDARIO (DÍA ACTUAL) --------------------------------------------------------------
 Widget _CalendarToday() {
   DateTime date = DateTime.now();
   List<String> month = [

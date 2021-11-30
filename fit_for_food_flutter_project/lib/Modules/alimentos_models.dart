@@ -15,7 +15,7 @@ class Alimentos {
 
   int calorias;
   String imagen;
-  String medida;
+  int medida;
   String nombre;
   String tipo;
   String? id;

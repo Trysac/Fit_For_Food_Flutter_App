@@ -8,7 +8,6 @@ import 'package:fit_for_food_flutter_project/View/Menu/Foods/Api/foods_api.dart'
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Model/foody.dart';
 import 'package:fit_for_food_flutter_project/View/Menu/Foods/Widget/search_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'package:http/http.dart' as http;
 // SERVICIO: Hacer peticiones HTTP
@@ -20,16 +19,17 @@ class ListadoAlimentos extends StatefulWidget {
 }
 
 class ListadoAlimentosState extends State<ListadoAlimentos> {
-  //-----------------SERVICES - CARGAR ALIMENTOS----------------------
-  // NOTA: Luego se optimizará para trabajarlo separado
+/*  
+  -----------------SERVICES - CARGAR ALIMENTOS----------------------
+   NOTA: Luego se optimizará para trabajarlo separado
 
-  // GET: LISTAR ALIMENTOS
-  // https://pruebafirebaserest-default-rtdb.firebaseio.com/alimentos.json
-
+   GET: LISTAR ALIMENTOS
+   https://pruebafirebaserest-default-rtdb.firebaseio.com/alimentos.json
+*/
   final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
-  final List<Alimentos> listAlimentos = [];
+  final List<Alimentos> _listAlimentos = [];
 
-  Future<List<Alimentos>> cargarAlimentos() async {
+  Future<List<Alimentos>> _listarAlimentos() async {
     String url =
         "https://pruebafirebaserest-default-rtdb.firebaseio.com/alimentos.json";
     // final url = Uri.http(_baseUrl, "alimentos.json");
@@ -37,13 +37,13 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
     final response = await http.get(uri);
     final Map<String, dynamic> alimentosMap = json.decode(response.body);
     //Imprimir Json
-    print("PAGE/LISTADO: cargar alimentos");
+    print("PAGE/LISTADO ALIMENTO: cargar alimentos");
     alimentosMap.forEach((key, value) {
       final _temp = Alimentos.fromMap(value);
       _temp.id = key;
-      this.listAlimentos.add(_temp);
+      this._listAlimentos.add(_temp);
     });
-    return this.listAlimentos;
+    return this._listAlimentos;
   }
 
 /*
@@ -52,14 +52,14 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
    POST: REGISTRAR CONSUMO
    https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json
 */
-  static Future registrarConsumo(ConsumoAlimentos consumo) async {
+  static Future _registrarConsumo(ConsumoAlimentos consumo) async {
     final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
     String url =
         "https://pruebafirebaserest-default-rtdb.firebaseio.com/consumo.json";
     Uri uri = Uri.parse(url);
     final response = await http.post(uri, body: consumo.toJson());
     final decodedData = json.decode(response.body);
-    print("PAGE/LISTADO: registrar consumo");
+    print("PAGE/LISTADO ALIMENTO: registrar consumo de alimento");
     print(decodedData);
     consumo.id = decodedData['name'];
     return consumo.id!;
@@ -67,20 +67,20 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
 //FIN SERVICES_REGISTRAR ALIMENTO -----------------------------------------------------------
 
   //USADOS PARA EL LISTADO DE ALIMENTOS
-  late List<Alimentos> alimentos = [];
-  String query = '';
-  List<Alimentos> dataAlimentos = [];
+  late List<Alimentos> _alimentos = [];
+  String query = "";
+  List<Alimentos> _dataAlimentos = [];
 
   // INIT STATE
   @override
   void initState() {
     super.initState();
-    cargarAlimentos().then((value) {
+    _listarAlimentos().then((value) {
       setState(() {
-        dataAlimentos.addAll(value);
-        print("FILTER_NETWORK... : dataAlimento");
-        print(dataAlimentos);
-        alimentos = dataAlimentos;
+        _dataAlimentos.addAll(value);
+        print("PAGE/LISTADO ALIMENTO: dataAlimento");
+        print(_dataAlimentos);
+        _alimentos = _dataAlimentos;
       });
     });
   }
@@ -93,9 +93,9 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
           buildSearch(),
           Expanded(
             child: ListView.builder(
-              itemCount: alimentos.length,
+              itemCount: _alimentos.length,
               itemBuilder: (context, index) {
-                final alimento = alimentos[index];
+                final alimento = _alimentos[index];
 
                 return buildFood(alimento);
               },
@@ -114,7 +114,7 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
       );
   // BUSCADOR_COMIDA -------------------------------------------------------------------------
   void searchFood(String query) {
-    final alimentos = dataAlimentos.where((alimento) {
+    final alimentos = _dataAlimentos.where((alimento) {
       final nombreAlimento = alimento.nombre.toLowerCase();
       //final caloriasAlimento = alimento.calorias.toLowerCase();
       final tipoAlimento = alimento.tipo.toLowerCase();
@@ -126,7 +126,7 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
 
     setState(() {
       this.query = query;
-      this.alimentos = alimentos;
+      this._alimentos = alimentos;
     });
   }
 
@@ -145,7 +145,13 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("${dataAlimento.tipo} - ${dataAlimento.medida}"),
+            Row(children: [
+              Text("${dataAlimento.tipo} - ${(dataAlimento.medida)} "),
+              if (dataAlimento.tipo == "Bebida")
+                Text("mililitros")
+              else
+                Text("gramos")
+            ]),
             Text("${dataAlimento.calorias} calorías"),
           ],
         ),
@@ -175,9 +181,9 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
     // COMBO BOX para registro de alimento (desayuno - almuerzo - cena)
     List<DropdownMenuItem<String>> getHorarioDropdown() {
       List<DropdownMenuItem<String>> listaHorario = [];
-      _horarioAlimento.forEach((horario) {
+      _horarioAlimento.forEach((_horario) {
         listaHorario
-            .add(DropdownMenuItem(child: Text(horario), value: horario));
+            .add(DropdownMenuItem(child: Text(_horario), value: _horario));
       });
       return listaHorario;
     }
@@ -264,17 +270,22 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
                         child: Text('Cancelar')),
                     TextButton(
                         onPressed: () async {
-                          await ListadoAlimentosState.registrarConsumo(
+                          await ListadoAlimentosState._registrarConsumo(
                               ConsumoAlimentos(
                                   calorias: alimento.calorias,
                                   day: DateTime.now().day,
+                                  horario: _horarioSeleccionado,
+                                  imagen: alimento.imagen,
+                                  medida: alimento.medida,
                                   month: DateTime.now().month,
                                   nombre: alimento.nombre,
                                   tipo: alimento.tipo,
                                   year: DateTime.now().year));
-                          // MOSTRAR LO QUE SE VA A GUARDA
+                          // PRINT para verificar valores que se registraron en el consumo
                           print("calorías: ${alimento.calorias}");
                           print("día: ${DateTime.now().day}");
+                          print("horario: ${_horarioSeleccionado}");
+                          print("medida: ${alimento.medida}");
                           print("mes: ${DateTime.now().month}");
                           print("nombre: ${alimento.nombre}");
                           print("tipo: ${alimento.tipo}");
