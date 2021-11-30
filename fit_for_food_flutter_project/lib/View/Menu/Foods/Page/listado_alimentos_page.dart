@@ -26,12 +26,12 @@ class ListadoAlimentosState extends State<ListadoAlimentos> {
    GET: LISTAR ALIMENTOS
    https://pruebafirebaserest-default-rtdb.firebaseio.com/alimentos.json
 */
-  final String _baseUrl = "pruebafirebaserest-default-rtdb.firebaseio.com";
+  final String _baseUrl = "prueba2firebaserest-default-rtdb.firebaseio.com";
   final List<Alimentos> _listAlimentos = [];
 
   Future<List<Alimentos>> _listarAlimentos() async {
     String url =
-        "https://pruebafirebaserest-default-rtdb.firebaseio.com/alimentos.json";
+        "https://prueba2firebaserest-default-rtdb.firebaseio.com/alimentos.json";
     // final url = Uri.http(_baseUrl, "alimentos.json");
     Uri uri = Uri.parse(url);
     final response = await http.get(uri);
