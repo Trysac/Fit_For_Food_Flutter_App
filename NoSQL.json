@@ -1,0 +1,242 @@
+{
+  "alimentos" : {
+    "id1" : {
+      "calorias" : 52,
+      "imagen" : "https://cdn-icons-png.flaticon.com/512/123/123431.png",
+      "medida" : 100,
+      "nombre" : "Manzana",
+      "tipo" : "Fruta"
+    },
+    "id2" : {
+      "calorias" : 89,
+      "imagen" : "https://cdn-icons-png.flaticon.com/512/2044/2044936.png",
+      "medida" : 100,
+      "nombre" : "Plátano",
+      "tipo" : "Fruta"
+    },
+    "id3" : {
+      "calorias" : 18,
+      "imagen" : "https://cdn-icons-png.flaticon.com/128/2909/2909894.png",
+      "medida" : 100,
+      "nombre" : "Tomate",
+      "tipo" : "Verdura"
+    },
+    "id4" : {
+      "calorias" : 41,
+      "imagen" : "https://cdn-icons-png.flaticon.com/128/2909/2909782.png",
+      "medida" : 100,
+      "nombre" : "Zanahoria",
+      "tipo" : "Verdura"
+    },
+    "id5" : {
+      "calorias" : 0,
+      "imagen" : "https://cdn-icons-png.flaticon.com/128/684/684626.png",
+      "medida" : 200,
+      "nombre" : "Vaso de agua",
+      "tipo" : "Bebida"
+    },
+    "id6" : {
+      "calorias" : 88,
+      "imagen" : "https://cdn-icons-png.flaticon.com/128/1046/1046782.png",
+      "medida" : 200,
+      "nombre" : "Vaso de gaseosa",
+      "tipo" : "Bebida"
+    }
+  },
+  "categoria" : {
+    "bebidas" : {
+      "id1" : {
+        "calorias" : 0,
+        "imagen" : "https://cdn-icons-png.flaticon.com/128/684/684626.png",
+        "nombre" : "Vaso de agua",
+        "peso" : 200
+      },
+      "id2" : {
+        "calorias" : 88,
+        "imagen" : "https://cdn-icons-png.flaticon.com/128/1046/1046782.png",
+        "nombre" : "Vaso de gaseosa",
+        "peso" : 200
+      }
+    },
+    "frutas" : {
+      "id1" : {
+        "calorias" : 52,
+        "imagen" : "https://cdn-icons-png.flaticon.com/512/123/123431.png",
+        "nombre" : "Manzana",
+        "peso" : 100
+      },
+      "id2" : {
+        "calorias" : 89,
+        "imagen" : "https://cdn-icons-png.flaticon.com/512/2044/2044936.png",
+        "nombre" : "Plátano",
+        "peso" : 100
+      }
+    },
+    "id1" : {
+      "Calorias" : 80,
+      "nombre" : "Manzana",
+      "tipo" : "Fruta"
+    },
+    "vegetales" : {
+      "id1" : {
+        "calorias" : 41,
+        "imagen" : "https://cdn-icons-png.flaticon.com/128/2909/2909782.png",
+        "nombre" : "Zanahoria",
+        "peso" : 100
+      },
+      "id2" : {
+        "calorias" : 18,
+        "imagen" : "https://cdn-icons-png.flaticon.com/128/2909/2909894.png",
+        "nombre" : "Tomate",
+        "peso" : 100
+      }
+    }
+  },
+  "usuarios" : {
+    "FLxhGjmcIjb3mOtAlZezBGjFgem2" : {
+      "consumo" : {
+        "-Mpu49TapNQkhQUWT2xl" : {
+          "calorias" : 52,
+          "day" : 2,
+          "horario" : "Otros",
+          "imagen" : "https://cdn-icons-png.flaticon.com/512/123/123431.png",
+          "medida" : 100,
+          "month" : 12,
+          "nombre" : "Manzana",
+          "tipo" : "Fruta",
+          "year" : 2021
+        },
+        "-MpuCfx3xBnGcc8z4vQh" : {
+          "calorias" : 52,
+          "day" : 2,
+          "horario" : "Otros",
+          "imagen" : "https://cdn-icons-png.flaticon.com/512/123/123431.png",
+          "medida" : 100,
+          "month" : 12,
+          "nombre" : "Manzana",
+          "tipo" : "Fruta",
+          "year" : 2021
+        },
+        "-MpuCgRzhHp47eKZlJT7" : {
+          "calorias" : 41,
+          "day" : 2,
+          "horario" : "Otros",
+          "imagen" : "https://cdn-icons-png.flaticon.com/128/2909/2909782.png",
+          "medida" : 100,
+          "month" : 12,
+          "nombre" : "Zanahoria",
+          "tipo" : "Verdura",
+          "year" : 2021
+        },
+        "-MpuE00dwnoZjsDmaVuO" : {
+          "calorias" : 89,
+          "day" : 2,
+          "horario" : "Desayuno",
+          "imagen" : "https://cdn-icons-png.flaticon.com/512/2044/2044936.png",
+          "medida" : 100,
+          "month" : 12,
+          "nombre" : "Plátano",
+          "tipo" : "Fruta",
+          "year" : 2021
+        },
+        "-MpuE3CuA_I2NvjuXyME" : {
+          "calorias" : 0,
+          "day" : 2,
+          "horario" : "Otros",
+          "imagen" : "https://cdn-icons-png.flaticon.com/128/684/684626.png",
+          "medida" : 200,
+          "month" : 12,
+          "nombre" : "Vaso de agua",
+          "tipo" : "Bebida",
+          "year" : 2021
+        },
+        "-MpuE4vFeLqD7VEu6h-X" : {
+          "calorias" : 88,
+          "day" : 2,
+          "horario" : "Otros",
+          "imagen" : "https://cdn-icons-png.flaticon.com/128/1046/1046782.png",
+          "medida" : 200,
+          "month" : 12,
+          "nombre" : "Vaso de gaseosa",
+          "tipo" : "Bebida",
+          "year" : 2021
+        },
+        "-MpuFR4yVFSsZcei9RRl" : {
+          "calorias" : 88,
+          "day" : 2,
+          "horario" : "Otros",
+          "imagen" : "https://cdn-icons-png.flaticon.com/128/1046/1046782.png",
+          "medida" : 200,
+          "month" : 12,
+          "nombre" : "Vaso de gaseosa",
+          "tipo" : "Bebida",
+          "year" : 2021
+        },
+        "-MpuFRmSfcJo3KCfiM5k" : {
+          "calorias" : 88,
+          "day" : 2,
+          "horario" : "Desayuno",
+          "imagen" : "https://cdn-icons-png.flaticon.com/128/1046/1046782.png",
+          "medida" : 200,
+          "month" : 12,
+          "nombre" : "Vaso de gaseosa",
+          "tipo" : "Bebida",
+          "year" : 2021
+        },
+        "-MpuFSV2WmW77oTe2qkQ" : {
+          "calorias" : 88,
+          "day" : 2,
+          "horario" : "Desayuno",
+          "imagen" : "https://cdn-icons-png.flaticon.com/128/1046/1046782.png",
+          "medida" : 200,
+          "month" : 12,
+          "nombre" : "Vaso de gaseosa",
+          "tipo" : "Bebida",
+          "year" : 2021
+        }
+      },
+      "datos" : {
+        "-MpttqWmrgOEd_tM8b2W" : {
+          "actividad" : "Sedentario",
+          "correo" : "prueba2@gmail.com",
+          "edad" : 25,
+          "estatura" : 172,
+          "genero" : "Hombre",
+          "metaagua" : 2200,
+          "metacalorias" : 2092,
+          "metapeso" : 68,
+          "nombre" : "Kaiba",
+          "peso" : 72.0,
+          "tmb" : 2092
+        }
+      }
+    },
+    "usuario1" : {
+      "consumo" : {
+        "consumo1" : {
+          "calorias" : 52,
+          "day" : 1,
+          "horario" : "Otros",
+          "imagen" : "https://cdn-icons-png.flaticon.com/512/123/123431.png",
+          "medida" : 100,
+          "month" : 10,
+          "nombre" : "Manzana",
+          "tipo" : "Fruta",
+          "year" : 2021
+        }
+      },
+      "datos" : {
+        "actividad" : "Poco",
+        "correo" : "prueba1@gmail.com",
+        "edad" : 20,
+        "estatura" : 170,
+        "genero" : "Masculino",
+        "metaagua" : 2000.5,
+        "metacalorias" : 2000,
+        "nombre" : "Kaiba",
+        "peso" : 70.5,
+        "tmb" : 1600
+      }
+    }
+  }
+}
